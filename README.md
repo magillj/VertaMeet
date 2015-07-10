@@ -1,4 +1,6 @@
 # VertaMeet
+Current Interns at Vertafore Please look elsewhere until after July.
+
 Proof of concept software intended to improve the company culture of Vertafore.
 
 This program is like a Meetup.com specialized for Vertafore. It's intention is to get people to meet up cross department and
