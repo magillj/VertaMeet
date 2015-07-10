@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Admin Page";
+}
+@model VertaMeet.Models.AdminViewModel
+@section PageScripts
+{
+    <script src="@Url.Content("~/Scripts/admin.js")"></script>
+}
+
+<div>
+    <h1>Administration</h1>
+</div>
+
+<div>
+    <h2>Database Modification</h2>
+
+    <div>
+        <h4>Create a user</h4>
+        <form id="create_user" onsubmit="return false;">
+            <fieldset>
+                <!--action="api/User" method="post"-->
+                <label for="createuser_id">User Id: </label>
+                <input name="Id" type="number" id="createuser_id" />
+
+                <label for="createuser_name">Name: </label>
+                <input name="Name" type="text" id="createuser_name" />
+
+                <label for="createuser_email">Email: </label>
+                <input name="Email" type="text" id="createuser_email" />
+
+                <label for="createuser_location">Location: </label>
+                <select name="Location" id="createuser_location">
+                    <option value="Bothell">Bothell</option>
+                    <option value="Atlanta">Atlanta</option>
+                </select>
+
+                <input type="submit" value="Create User" />
+            </fieldset>
+        </form>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <h2>Database Visualization</h2>
+
+    <div>
+        <h4>Users</h4>
+        <div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                </tr>
+                @if(Model != null)
+                {
+                    foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>@user.Location</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+</div>
