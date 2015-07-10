@@ -6,7 +6,7 @@ using System.Web;
 
 namespace VertaMeet.Models
 {
-    public class UserModel
+    public class UserModel : IDataModel
     {
         public enum LOCATION
         {

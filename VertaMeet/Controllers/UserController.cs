@@ -143,17 +143,10 @@ namespace VertaMeet.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "User could not be created, missing name and/or email.");
             }
-            /*UserModel user = new UserModel()
-            {
-                Id = Convert.ToInt32(formData.Get("userId")),
-                Name = formData.Get("name"),
-                Email = formData.Get("email"),
-                Location = (UserModel.LOCATION)Enum.Parse(typeof(UserModel.LOCATION), formData.Get("location"))
-            };*/
 
             DatabaseInteractionResponse result = DatabaseInteractor.CreateUser(user);
 
-            if (result.Success) 
+            if (result.Success)
             {
                 return Request.CreateResponse<UserModel>(HttpStatusCode.OK, user);
             }

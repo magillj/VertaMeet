@@ -181,17 +181,16 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\DatabaseInteractionResponse.cs" />
     <Compile Include="Data\DatabaseInteractor.cs" />
-    <Compile Include="Domain.Tier\EventService.cs" />
-    <Compile Include="Domain.Tier\InterestGroupService.cs" />
-    <Compile Include="Domain.Tier\UserService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\EventModel.cs" />
+    <Compile Include="Models\IDataModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InterestGroupModel.cs" />
+    <Compile Include="Models\IViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
