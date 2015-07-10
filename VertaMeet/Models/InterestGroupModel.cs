@@ -15,6 +15,6 @@ namespace VertaMeet.Models
 
         public List<UserModel> Members;
 
-        public string ImageURL;
+        public string ImageUrl;
     }
 }
