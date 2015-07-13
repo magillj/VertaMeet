@@ -3,33 +3,155 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>VERTAMEET</h1>
+    <p class="lead">A social platform to enable socialization and collaboration across Vertafore.</p>
+    <p><a href="http://localhost:20488/Home/About" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <hr />
 <a href="~/Admin">ADMIN PAGE</a>
 <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!-- Locations -->
+<div class="locations">
+    <h1>Locations: </h1>
+    <div class="tiles red">
+        <table>
+            <tr>
+                <td>
+                    <div class="live-tile" id="tile1" data-mode="flip">
+                        <div>
+                            <img src="https://c2.staticflickr.com/4/3722/19479858008_708bd81d0d_n.jpg" height="150" width="150">
+                            <a class="full" href="#">Atlanta</a>
+                            <span class="tile-title">Atlanta</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="https://c2.staticflickr.com/4/3672/19672356821_09e183c520_q.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Atlanta</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="live-tile green" id="tile2" data-mode="flip">
+                        <div>
+                            <img src="https://c2.staticflickr.com/4/3734/19641688606_9b1940f31f.jpg" height="150" width="150">
+                            <a class="full" href="#">Bothell</a>
+                            <span class="tile-title">Bothell</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="https://c2.staticflickr.com/4/3811/19660791972_4806e3c1a5_q.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Bothell</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="live-tile blue" id="tile3" data-mode="flip">
+                        <div>
+                            <img src="img/rsz_boulderlobby.jpg" height="150" width="150">
+                            <a class="full" href="#">Boulder</a>
+                            <span class="tile-title">Boulder</span>
+                        </div>
+                        <div style="background-color:navy;">
+                            <a href="#"><img src="https://c2.staticflickr.com/4/3811/19660791972_4806e3c1a5_q.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Boulder</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="live-tile" id="tile1" data-mode="flip">
+                        <div>
+                            <img src="img/DeerFieldBeach.jpg" height="150" width="150">
+                            <a class="full" href="#">DeerField Beach</a>
+                            <span class="tile-title">DeerField Beach</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="img/insideDeerFieldBeach.jpg" height="150" width="150"></a>
+                            <span class="tile-title">DeerField Beach</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="live-tile green" id="tile2" data-mode="flip">
+                        <div>
+                            <img src="https://c2.staticflickr.com/4/3666/19667879805_b3e9ce3166_q.jpg" height="150" width="150">
+                            <a class="full" href="#">East Lansing</a>
+                            <span class="tile-title">East Lansing</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="img/insideEastLansing.jpg" height="150" width="150"></a>
+                            <span class="tile-title">East Lansing</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="live-tile blue" id="tile3" data-mode="flip">
+                        <div>
+                            <img src="img/Indianapolis.jpg" height="150" width="150">
+                            <a class="full" href="#">Indianapolis</a>
+                            <span class="tile-title">Indianapolis</span>
+                        </div>
+                        <div style="background-color:navy;">
+                            <a href="#"><img src="img/insideIndianapoils.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Indianapolis</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="live-tile" id="tile1" data-mode="flip">
+                        <div>
+                            <img src="img/Pulaski.jpg" height="150" width="150">
+                            <a class="full" href="#">Pulaski</a>
+                            <span class="tile-title">Pulaski</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="img/insidePulaski.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Pulaski</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="live-tile green" id="tile2" data-mode="flip">
+                        <div>
+                            <img src="https://c1.staticflickr.com/1/275/19479888170_b0f109a663_q.jpg" height="150" width="150">
+                            <a class="full" href="#">Windsor</a>
+                            <span class="tile-title">Windsor</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="https://c1.staticflickr.com/1/406/19046958423_d46763ff93_q.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Windsor</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="live-tile blue" id="tile3" data-mode="flip">
+                        <div>
+                            <img src="img/WoodlandHills.jpg" height="150" width="150">
+                            <a class="full" href="#">Woodland Hills</a>
+                            <span class="tile-title">Woodland Hills</span>
+                        </div>
+                        <div style="background-color:navy;">
+                            <a href="#"><img src="img/insideWoodlandHills.jpg" height="150" width="150"></a>
+                            <span class="tile-title">Woodland Hills</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <script src="http://www.drewgreenwell.com/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="http://www.drewgreenwell.com/Scripts/MetroJs/bundles/MetroJs.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+            //play on hover
+            var $tiles = $("#tile1, #tile2, #tile3").liveTile({
+                playOnHover:true,
+                repeatCount: 0,
+                delay: 0,
+                startNow:false
+            });
+    </script>
 </div>
