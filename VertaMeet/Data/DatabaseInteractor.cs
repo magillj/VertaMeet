@@ -23,27 +23,14 @@ namespace VertaMeet.Data
         /// <returns>Null if no event by that id, otherwise the event with that id</returns>
         public static EventModel GetEventById(int eventId)
         {
-            EventModel outputEvent = null;
-
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("GetEventById", conn)
+            Func<SqlDataReader, EventModel> readEvent = delegate(SqlDataReader rdr)
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@eventId", eventId));
-                using (SqlDataReader rdr = command.ExecuteReader())
-                {
-                    if (rdr.Read())
-                    {
-                        outputEvent = GetEventModelFromReader(rdr);
-                    }
-                }
-                conn.Close();
-            }
+                return rdr.Read() ? GetEventModelFromReader(rdr) : null;
+            };
 
-            return outputEvent;
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@eventId", eventId) };
+
+            return (EventModel)ExecuteSqlReader("GetEventById", readEvent, parameters);
         }
 
         /// <summary>
@@ -52,27 +39,14 @@ namespace VertaMeet.Data
         /// <returns>Null if no user by that id, otherwise the user with that id</returns>
         public static InterestGroupModel GetInterestGroupById(int interestGroupId)
         {
-            InterestGroupModel outputInterestGroup = null;
-
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("GetInterestGroupById", conn)
+            Func<SqlDataReader, InterestGroupModel> readInterestGroup = delegate(SqlDataReader rdr)
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@interestGroupId", interestGroupId));
-                using (SqlDataReader rdr = command.ExecuteReader())
-                {
-                    if (rdr.Read())
-                    {
-                        outputInterestGroup = GetInterestGroupFromReader(rdr);
-                    }
-                }
-                conn.Close();
-            }
+                return rdr.Read() ? GetInterestGroupFromReader(rdr) : null;
+            };
 
-            return outputInterestGroup;
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@interestGroupId", interestGroupId) };
+
+            return (InterestGroupModel)ExecuteSqlReader("GetInterestGroupById", readInterestGroup, parameters);
         }
 
         /// <summary>
@@ -81,27 +55,14 @@ namespace VertaMeet.Data
         /// <returns>Null if no user by that id, otherwise the user with that id</returns>
         public static UserModel GetUserById(int userId)
         {
-            UserModel outputUser = null;
-
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("GetUserById", conn)
+            Func<SqlDataReader, UserModel> readUser = delegate(SqlDataReader rdr)
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@userId", userId));
-                using (SqlDataReader rdr = command.ExecuteReader())
-                {
-                    if (rdr.Read())
-                    {
-                        outputUser = GetUserModelFromReader(rdr);
-                    }
-                }
-                conn.Close();
-            }
+                return rdr.Read() ? GetUserModelFromReader(rdr) : null;
+            };
 
-            return outputUser;
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@userId", userId) };
+
+            return (UserModel)ExecuteSqlReader("GetUserById", readUser, parameters);
         }
 
         /// <summary>
@@ -110,28 +71,20 @@ namespace VertaMeet.Data
         /// <returns>All the users in the database</returns>
         public static List<UserModel> GetAllUsers()
         {
-            List<UserModel> users = new List<UserModel>();
+            Func<SqlDataReader, List<UserModel>> readUsers = delegate(SqlDataReader rdr)
+            {
+                List<UserModel> users = new List<UserModel>();
 
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("GetAllUsers", conn)
-            {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                using (SqlDataReader rdr = command.ExecuteReader())
+                while (rdr.Read())
                 {
-                    while (rdr.Read())
-                    {
-                        UserModel user = GetUserModelFromReader(rdr);
-                        users.Add(user);
-                    }
+                    UserModel user = GetUserModelFromReader(rdr);
+                    users.Add(user);
                 }
 
-                conn.Close();
-            }
+                return users;
+            };
 
-            return users;
+            return (List<UserModel>)ExecuteSqlReader("GetAllUsers", readUsers);
         }
 
         #endregion
@@ -151,25 +104,18 @@ namespace VertaMeet.Data
                 throw new NotImplementedException();
             }
 
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("CreateEvent", conn)
+            List<SqlParameter> parameters = new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@eventId", eventModel.Id));
-                command.Parameters.Add(new SqlParameter("@name", eventModel.Name));
-                command.Parameters.Add(new SqlParameter("@description", eventModel.Description));
-                command.Parameters.Add(new SqlParameter("@time", eventModel.Time));
-                command.Parameters.Add(new SqlParameter("@imageUrl", eventModel.ImageUrl));
-                command.Parameters.Add(new SqlParameter("@location", eventModel.Location.ToString()));
-                command.Parameters.Add(new SqlParameter("@interestGroupId", eventModel.InterestGroup));
-                command.ExecuteNonQuery();
-                conn.Close();
-            }
+                new SqlParameter("@eventId", eventModel.Id),
+                new SqlParameter("@name", eventModel.Name),
+                new SqlParameter("@description", eventModel.Description),
+                new SqlParameter("@time", eventModel.Time),
+                new SqlParameter("@imageUrl", eventModel.ImageUrl),
+                new SqlParameter("@location", eventModel.Location),
+                new SqlParameter("@interestGroupId", eventModel.InterestGroup.Id)
+            };
 
-            return new DatabaseInteractionResponse() { Success = true };
+            return ExecuteSqlNonQuery("CreateUser", parameters);
         }
 
         public static DatabaseInteractionResponse CreateInterestGroup(InterestGroupModel interestGroupModel)
@@ -185,23 +131,16 @@ namespace VertaMeet.Data
                 throw new NotImplementedException();
             }
 
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("CreateInterestGroupModel", conn)
+            List<SqlParameter> parameters = new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@interestGroupId", interestGroupModel.Id));
-                command.Parameters.Add(new SqlParameter("@name", interestGroupModel.Name));
-                command.Parameters.Add(new SqlParameter("@description", interestGroupModel.Description));
-                command.Parameters.Add(new SqlParameter("@managerId", interestGroupModel.Manager.Id));
-                command.Parameters.Add(new SqlParameter("@imageUrl", interestGroupModel.ImageUrl));
-                command.ExecuteNonQuery();
-                conn.Close();
-            }
+                new SqlParameter("@interestGroupId", interestGroupModel.Id), 
+                new SqlParameter("@name", interestGroupModel.Name), 
+                new SqlParameter("@description", interestGroupModel.Description), 
+                new SqlParameter("@managerId", interestGroupModel.Manager.Id), 
+                new SqlParameter("@imageUrl", interestGroupModel.ImageUrl)
+            };
 
-            return new DatabaseInteractionResponse() { Success = true };
+            return ExecuteSqlNonQuery("CreateUser", parameters);
         }
 
 
@@ -213,44 +152,96 @@ namespace VertaMeet.Data
                 return new DatabaseInteractionResponse() { Success = false, Message = "There already exists a user with the id: " + userModel.Id };
             }
 
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("CreateUser", conn)
+            List<SqlParameter> parameters = new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@userId", userModel.Id));
-                command.Parameters.Add(new SqlParameter("@name", userModel.Name));
-                command.Parameters.Add(new SqlParameter("@email", userModel.Email));
-                command.Parameters.Add(new SqlParameter("@location", userModel.Location.ToString()));
-                command.ExecuteNonQuery();
-                conn.Close();
-            }
+                new SqlParameter("@userId", userModel.Id), 
+                new SqlParameter("@name", userModel.Name), 
+                new SqlParameter("@email", userModel.Email), 
+                new SqlParameter("@location", userModel.Location.ToString())
+            };
 
-            return new DatabaseInteractionResponse() { Success = true };
+            return ExecuteSqlNonQuery("CreateUser", parameters);
         }
 
         public static DatabaseInteractionResponse DeleteUser(int userId)
         {
-            using (var conn = new SqlConnection(SqlConnectionStr))
-            using (var command = new SqlCommand("DeleteUser", conn)
+            List<SqlParameter> parameters = new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.Parameters.Add(new SqlParameter("@userId", userId));
-                command.ExecuteNonQuery();
-                conn.Close();
-            }
+                new SqlParameter("@userId", userId)
+            };
 
-            return new DatabaseInteractionResponse() { Success = true };
+            return ExecuteSqlNonQuery("DeleteUser", parameters);
         }
 
         #endregion
 
         #region Helpers
+
+        private static DatabaseInteractionResponse ExecuteSqlNonQuery(string commandText, List<SqlParameter> parameters = null)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(SqlConnectionStr))
+                using (var command = new SqlCommand(commandText, conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    conn.Open();
+
+                    // Add parameters, if any
+                    foreach (var param in parameters ?? new List<SqlParameter>())
+                    {
+                        command.Parameters.Add(param);
+                    }
+                    command.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                return new DatabaseInteractionResponse() {Success = true};
+            }
+            catch (Exception e)
+            {
+                return new DatabaseInteractionResponse() { Success = false, Message = "An error occurred during sql nonquery execution. Message: " + e.Message};
+            }
+            
+        }
+
+        /// <summary>
+        /// Executes a Sql command and executes func with the SqlDataReader
+        /// </summary>
+        /// <param name="commandText">Name of the stored procedure</param>
+        /// <param name="func">The function to be executed with the reader</param>
+        /// <param name="parameters">Optional: parameters to add to the command</param>
+        /// <returns></returns>
+        private static object ExecuteSqlReader(string commandText, Func<SqlDataReader, object> func, List<SqlParameter> parameters = null)
+        {
+            object output;
+
+            using (var conn = new SqlConnection(SqlConnectionStr))
+            using (var command = new SqlCommand(commandText, conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                conn.Open();
+
+                // Add parameters, if any
+                foreach (var param in parameters ?? new List<SqlParameter>())
+                {
+                    command.Parameters.Add(param);
+                }
+                // Execute func
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    output = func(rdr);
+                }
+
+                conn.Close();
+            }
+
+            return output;
+        }
 
         private static UserModel GetUserModelFromReader(SqlDataReader rdr)
         {
