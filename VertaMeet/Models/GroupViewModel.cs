@@ -5,8 +5,8 @@ using System.Web;
 
 namespace VertaMeet.Models
 {
-    public class AdminViewModel: IViewModel
+    public class GroupViewModel : IViewModel
     {
-        public List<UserModel> Users { get; set; }
+        public InterestGroupModel InterestGroup { get; set; }
     }
 }
