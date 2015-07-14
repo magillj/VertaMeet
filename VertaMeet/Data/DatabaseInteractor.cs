@@ -18,51 +18,25 @@ namespace VertaMeet.Data
         #region Get
 
         /// <summary>
-        /// Gets data about the event with eventId
+        /// Returns a list of all the Interest Groups in the database
         /// </summary>
-        /// <returns>Null if no event by that id, otherwise the event with that id</returns>
-        public static EventModel GetEventById(int eventId)
+        /// <returns>All the interest groups in the database</returns>
+        public static List<InterestGroupModel> GetAllInterestGroups()
         {
-            Func<SqlDataReader, EventModel> readEvent = delegate(SqlDataReader rdr)
+            Func<SqlDataReader, List<InterestGroupModel>> readInterestGroups = delegate(SqlDataReader rdr)
             {
-                return rdr.Read() ? GetEventModelFromReader(rdr) : null;
+                List<InterestGroupModel> interestGroups = new List<InterestGroupModel>();
+
+                while (rdr.Read())
+                {
+                    InterestGroupModel interestGroupModel = GetInterestGroupModelFromReader(rdr);
+                    interestGroups.Add(interestGroupModel);
+                }
+
+                return interestGroups;
             };
 
-            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@eventId", eventId) };
-
-            return (EventModel)ExecuteSqlReader("GetEventById", readEvent, parameters);
-        }
-
-        /// <summary>
-        /// Gets data about the user with userId
-        /// </summary>
-        /// <returns>Null if no user by that id, otherwise the user with that id</returns>
-        public static InterestGroupModel GetInterestGroupById(int interestGroupId)
-        {
-            Func<SqlDataReader, InterestGroupModel> readInterestGroup = delegate(SqlDataReader rdr)
-            {
-                return rdr.Read() ? GetInterestGroupFromReader(rdr) : null;
-            };
-
-            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@interestGroupId", interestGroupId) };
-
-            return (InterestGroupModel)ExecuteSqlReader("GetInterestGroupById", readInterestGroup, parameters);
-        }
-
-        /// <summary>
-        /// Gets data about the user with userId
-        /// </summary>
-        /// <returns>Null if no user by that id, otherwise the user with that id</returns>
-        public static UserModel GetUserById(int userId)
-        {
-            Func<SqlDataReader, UserModel> readUser = delegate(SqlDataReader rdr)
-            {
-                return rdr.Read() ? GetUserModelFromReader(rdr) : null;
-            };
-
-            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@userId", userId) };
-
-            return (UserModel)ExecuteSqlReader("GetUserById", readUser, parameters);
+            return (List<InterestGroupModel>)ExecuteSqlReader("GetAllInterestGroups", readInterestGroups);
         }
 
         /// <summary>
@@ -87,9 +61,100 @@ namespace VertaMeet.Data
             return (List<UserModel>)ExecuteSqlReader("GetAllUsers", readUsers);
         }
 
+        /// <summary>
+        /// Gets data about the event with eventId
+        /// </summary>
+        /// <returns>Null if no event by that id, otherwise the event with that id</returns>
+        public static EventModel GetEventById(int eventId)
+        {
+            Func<SqlDataReader, EventModel> readEvent = delegate(SqlDataReader rdr)
+            {
+                return rdr.Read() ? GetEventModelFromReader(rdr) : null;
+            };
+
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@eventId", eventId) };
+
+            return (EventModel)ExecuteSqlReader("GetEventById", readEvent, parameters);
+        }
+
+        /// <summary>
+        /// Gets a list of events corresponding to the interest group with interestGroupId
+        /// </summary>
+        public static List<EventModel> GetEventsForInterestGroup(int interestGroupId)
+        {
+            Func<SqlDataReader, List<EventModel>> readEvents = delegate(SqlDataReader rdr)
+            {
+                List<EventModel> events = new List<EventModel>();
+
+                while (rdr.Read())
+                {
+                    EventModel eventModel = GetEventModelFromReader(rdr);
+                    events.Add(eventModel);
+                }
+
+                return events;
+            };
+
+            return (List<EventModel>)ExecuteSqlReader("GetEventsForInterestGroup", readEvents);
+        }
+
+        /// <summary>
+        /// Gets data about the user with userId
+        /// </summary>
+        /// <returns>Null if no user by that id, otherwise the user with that id</returns>
+        public static InterestGroupModel GetInterestGroupById(int interestGroupId)
+        {
+            Func<SqlDataReader, InterestGroupModel> readInterestGroup = delegate(SqlDataReader rdr)
+            {
+                return rdr.Read() ? GetInterestGroupModelFromReader(rdr) : null;
+            };
+
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@interestGroupId", interestGroupId) };
+
+            return (InterestGroupModel)ExecuteSqlReader("GetInterestGroupById", readInterestGroup, parameters);
+        }
+
+        /// <summary>
+        /// Gets data about the user with userId
+        /// </summary>
+        /// <returns>Null if no user by that id, otherwise the user with that id</returns>
+        public static UserModel GetUserById(int userId)
+        {
+            Func<SqlDataReader, UserModel> readUser = delegate(SqlDataReader rdr)
+            {
+                return rdr.Read() ? GetUserModelFromReader(rdr) : null;
+            };
+
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@userId", userId) };
+
+            return (UserModel)ExecuteSqlReader("GetUserById", readUser, parameters);
+        }
+
         #endregion
 
         #region Modify
+
+        public static DatabaseInteractionResponse AddUserToEvent(int eventId, int userId)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@eventId", eventId),
+                new SqlParameter("@userId", userId)
+            };
+
+            return ExecuteSqlNonQuery("AddUserToEvent", parameters);
+        }
+
+        public static DatabaseInteractionResponse AddUserToInterestGroup(int interestGroup, int userId)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@interestGroup", interestGroup),
+                new SqlParameter("@userId", userId)
+            };
+
+            return ExecuteSqlNonQuery("AddUserToInterestGroup", parameters);
+        }
 
         public static DatabaseInteractionResponse CreateEvent(EventModel eventModel)
         {
@@ -97,11 +162,6 @@ namespace VertaMeet.Data
             if (GetEventById(eventModel.Id) != null)
             {
                 return new DatabaseInteractionResponse() { Success = false, Message = "There already exists an event with the id: " + eventModel.Id };
-            }
-            
-            if (eventModel.Attendees.Count > 0)
-            {
-                throw new NotImplementedException();
             }
 
             List<SqlParameter> parameters = new List<SqlParameter>
@@ -115,7 +175,25 @@ namespace VertaMeet.Data
                 new SqlParameter("@interestGroupId", eventModel.InterestGroup.Id)
             };
 
-            return ExecuteSqlNonQuery("CreateUser", parameters);
+            DatabaseInteractionResponse eventResponse = ExecuteSqlNonQuery("CreateEvent", parameters);
+
+            if (eventResponse.Success)
+            {
+                foreach (UserModel user in eventModel.Attendees)
+                {
+                    DatabaseInteractionResponse userResponse = AddUserToEvent(eventModel.Id, user.Id);
+
+                    // TODO: This is a really bad failure. Log on critical or undo everything
+                    if (!userResponse.Success)
+                    {
+                        return userResponse;
+                    }
+                }
+
+                return new DatabaseInteractionResponse() { Success = true };
+            }
+
+            return eventResponse;
         }
 
         public static DatabaseInteractionResponse CreateInterestGroup(InterestGroupModel interestGroupModel)
@@ -124,11 +202,6 @@ namespace VertaMeet.Data
             if (GetInterestGroupById(interestGroupModel.Id) != null)
             {
                 return new DatabaseInteractionResponse() { Success = false, Message = "There already exists an interest group with the id: " + interestGroupModel.Id };
-            }
-
-            if (interestGroupModel.Members.Count > 0)
-            {
-                throw new NotImplementedException();
             }
 
             List<SqlParameter> parameters = new List<SqlParameter>
@@ -140,9 +213,26 @@ namespace VertaMeet.Data
                 new SqlParameter("@imageUrl", interestGroupModel.ImageUrl)
             };
 
-            return ExecuteSqlNonQuery("CreateUser", parameters);
-        }
+            DatabaseInteractionResponse interestGroupResponse = ExecuteSqlNonQuery("CreateInterestGroup", parameters);
 
+            if (interestGroupResponse.Success)
+            {
+                foreach (UserModel user in interestGroupModel.Members)
+                {
+                    DatabaseInteractionResponse userResponse = AddUserToEvent(interestGroupModel.Id, user.Id);
+
+                    // TODO: This is a really bad failure. Log on critical or undo everything
+                    if (!userResponse.Success)
+                    {
+                        return userResponse;
+                    }
+                }
+
+                return new DatabaseInteractionResponse() { Success = true };
+            }
+
+            return interestGroupResponse;
+        }
 
         public static DatabaseInteractionResponse CreateUser(UserModel userModel)
         {
@@ -163,6 +253,26 @@ namespace VertaMeet.Data
             return ExecuteSqlNonQuery("CreateUser", parameters);
         }
 
+        public static DatabaseInteractionResponse DeleteEvent(int eventId)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@eventId", eventId)
+            };
+
+            return ExecuteSqlNonQuery("DeleteEvent", parameters);
+        }
+
+        public static DatabaseInteractionResponse DeleteInterestGroup(int interestGroup)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@interestGroup", interestGroup)
+            };
+
+            return ExecuteSqlNonQuery("DeleteInterestGroup", parameters);
+        }
+
         public static DatabaseInteractionResponse DeleteUser(int userId)
         {
             List<SqlParameter> parameters = new List<SqlParameter>
@@ -170,13 +280,57 @@ namespace VertaMeet.Data
                 new SqlParameter("@userId", userId)
             };
 
+            //TODO: Delete all references in other tables
+
             return ExecuteSqlNonQuery("DeleteUser", parameters);
+        }
+
+        public static DatabaseInteractionResponse RemoveUserFromEvent(int eventId, int userId)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@eventId", eventId),
+                new SqlParameter("@userId", userId)
+            };
+
+            return ExecuteSqlNonQuery("RemoveUserFromEvent", parameters);
+        }
+
+        public static DatabaseInteractionResponse RemoveUserFromInterestGroup(int interestGroup, int userId)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@interestGroup", interestGroup),
+                new SqlParameter("@userId", userId)
+            };
+
+            return ExecuteSqlNonQuery("RemoveUserFromEventInterestGroup", parameters);
+        }
+
+        public static DatabaseInteractionResponse UpdateEvent(EventModel eventModel)
+        {
+            DatabaseInteractionResponse deleteResponse = DeleteEvent(eventModel.Id);
+            
+            return deleteResponse.Success ? CreateEvent(eventModel) : deleteResponse;
+        }
+
+        public static DatabaseInteractionResponse UpdateInterestGroup(InterestGroupModel interestGroupModel)
+        {
+            DatabaseInteractionResponse deleteResponse = DeleteInterestGroup(interestGroupModel.Id);
+
+            return deleteResponse.Success ? CreateInterestGroup(interestGroupModel) : deleteResponse;
         }
 
         #endregion
 
         #region Helpers
 
+        /// <summary>
+        /// Executes a Sql Nonquery
+        /// </summary>
+        /// <param name="commandText">Name of the stored procedure</param>
+        /// <param name="parameters">Optional: parameters to add to the command</param>
+        /// <returns>A DatabaseInteractionREsponse indicating the outcome of the procedure</returns>
         private static DatabaseInteractionResponse ExecuteSqlNonQuery(string commandText, List<SqlParameter> parameters = null)
         {
             try
@@ -296,7 +450,7 @@ namespace VertaMeet.Data
             return attendees;
         }
 
-        private static InterestGroupModel GetInterestGroupFromReader(SqlDataReader rdr)
+        private static InterestGroupModel GetInterestGroupModelFromReader(SqlDataReader rdr)
         {
             //rdr["Attendees"];
             return new InterestGroupModel()

@@ -150,10 +150,8 @@ namespace VertaMeet.Controllers
             {
                 return Request.CreateResponse<UserModel>(HttpStatusCode.OK, user);
             }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "User could not be created. The following error occurred: " + result.Message);
-            }
+            
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "User could not be created. The following error occurred: " + result.Message);
         }
     }
 }

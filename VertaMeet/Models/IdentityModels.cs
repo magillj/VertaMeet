@@ -31,5 +31,9 @@ namespace VertaMeet.Models
         }
 
         public System.Data.Entity.DbSet<VertaMeet.Models.UserModel> UserModels { get; set; }
+
+        public System.Data.Entity.DbSet<VertaMeet.Models.EventModel> EventModels { get; set; }
+
+        public System.Data.Entity.DbSet<VertaMeet.Models.InterestGroupModel> InterestGroupModels { get; set; }
     }
 }
