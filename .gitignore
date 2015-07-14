@@ -204,3 +204,6 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+VertaMeet/bin/VertaMeet.dll
+*.pdb
+VertaMeet/obj/Debug/VertaMeet.csprojResolveAssemblyReference.cache
