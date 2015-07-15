@@ -10,11 +10,10 @@ namespace VertaMeet.Controllers
 {
     public class OfficeController : Controller
     {
-        // GET: Office
-        public ActionResult Index(string location)
+        public ActionResult Index(string id)
         {
-            UserModel.LOCATION loc;
-            if (!Enum.TryParse(location, true, out loc))
+            UserModel.LOCATION location;
+            if (!Enum.TryParse(id, true, out location))
             {
                 return new HttpStatusCodeResult(400, "Location is invalid");
             }
@@ -22,7 +21,7 @@ namespace VertaMeet.Controllers
             return View(new OfficeViewModel()
             {
                 InterestGroups = DatabaseInteractor.GetAllInterestGroups(),
-                Location = loc
+                Location = location
             });
         }
     }

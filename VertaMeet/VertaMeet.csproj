@@ -192,6 +192,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\EventModel.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\IDataModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Views\Office\Index.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Views\EventView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -280,9 +282,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\EventView\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
