@@ -4,4 +4,22 @@
 }
 
 
-<h1>hello world</h1>
+<h1>This is the @Model.Location office, welcome!</h1>
+<h2>Here's an unformatted table of all our interest groups</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>ImageUrl</th>
+    </tr>
+    @foreach (var interestGroup in Model.InterestGroups)
+    {
+        <tr>
+            <td>@interestGroup.Id</td>
+            <td>@interestGroup.Name</td>
+            <td>@interestGroup.Description</td>
+            <td>@interestGroup.ImageUrl</td>
+        </tr>
+    }
+</table>
