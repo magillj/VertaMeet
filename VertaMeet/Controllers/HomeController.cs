@@ -20,6 +20,11 @@ namespace VertaMeet.Controllers
             return View();
         }
 
+        public ActionResult Location()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
