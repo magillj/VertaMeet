@@ -10,8 +10,15 @@ namespace VertaMeet.Models
     {
         public enum LOCATION
         {
+            Atlanta,
             Bothell,
-            Atlanta
+            Boulder,
+            DeerFieldBeach,
+            EastLansing,
+            Indianapolis,
+            Pulaski,
+            Windsor,
+            WoodlandHills
         };
 
         [Key]
