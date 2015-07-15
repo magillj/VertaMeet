@@ -13,7 +13,7 @@ namespace VertaMeet.Models
             Atlanta,
             Bothell,
             Boulder,
-            DeerFieldBeach,
+            Deerfield,
             EastLansing,
             Indianapolis,
             Pulaski,
