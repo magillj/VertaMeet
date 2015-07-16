@@ -15,10 +15,24 @@ namespace VertaMeet.Controllers
         {
             AdminViewModel model = new AdminViewModel()
             {
-                Users = DatabaseInteractor.GetAllUsers()
+                Users = DatabaseInteractor.GetAllUsers(),
+                InterestGroups = DatabaseInteractor.GetAllInterestGroups(),
             };
+            model.Events = GetEventsForInterestGroups(model.InterestGroups);
 
             return View(model);
+        }
+
+        private List<EventModel> GetEventsForInterestGroups(List<InterestGroupModel> interestGroups)
+        {
+            List<EventModel> output = new List<EventModel>();
+
+            foreach (var interestGroup in interestGroups)
+            {
+                output.AddRange(DatabaseInteractor.GetEventsForInterestGroup(interestGroup.Id));
+            }
+
+            return output;
         }
     }
 }

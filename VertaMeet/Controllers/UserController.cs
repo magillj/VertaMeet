@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -76,7 +77,7 @@ namespace VertaMeet.Controllers
 
         // POST: api/User
         [ResponseType(typeof(UserModel))]
-        public IHttpActionResult PostUserModel(UserModel userModel)
+        public IHttpActionResult CreateUser(UserModel userModel)
         {
             if (!ModelState.IsValid)
             {
@@ -122,7 +123,6 @@ namespace VertaMeet.Controllers
         #endregion
 
         // GET: api/User/5
-        [ResponseType(typeof(UserModel))]
         public IHttpActionResult GetUserModel(int id)
         {
             UserModel userModel = DatabaseInteractor.GetUserById(id);
@@ -132,25 +132,40 @@ namespace VertaMeet.Controllers
                 return NotFound();
             }
 
-            return Ok(userModel);
+            return Ok();
         }
 
-        // POST: api/User
-        [ResponseType(typeof(UserModel))]
-        public HttpResponseMessage PostUserModel(UserModel user)
+        [HttpPost]
+        public HttpResponseMessage CreateUser(UserModel user)
         {
             if (user.Name == null || user.Email == null)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "User could not be created, missing name and/or email.");
             }
 
+            // Set unique user id
+            user.Id = DatabaseInteractor.GetHighestUserId() + 1;
+
             DatabaseInteractionResponse result = DatabaseInteractor.CreateUser(user);
 
             if (result.Success)
             {
-                return Request.CreateResponse<UserModel>(HttpStatusCode.OK, user);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "User could not be created. The following error occurred: " + result.Message);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage DeleteUser(int userId)
+        {
+            DatabaseInteractionResponse result = DatabaseInteractor.DeleteUser(userId);
+
+            if (result.Success)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+
             return Request.CreateResponse(HttpStatusCode.BadRequest, "User could not be created. The following error occurred: " + result.Message);
         }
     }

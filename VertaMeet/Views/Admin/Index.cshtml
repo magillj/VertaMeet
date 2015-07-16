@@ -6,39 +6,172 @@
 {
     <script src="@Url.Content("~/Scripts/admin.js")"></script>
 }
+@section PageStyles
+{
+    <link href="../../Content/Site.css" type="text/css" rel="stylesheet" />
+}
 
 <div>
     <h1>Administration</h1>
 </div>
 
-<div>
+<div class="adminFrame">
     <h2>Database Modification</h2>
 
     <div>
         <h4>Create a user</h4>
         <form id="create_user" onsubmit="return false;">
             <fieldset>
-                <!--action="api/User" method="post"-->
-                <label for="createuser_id">User Id: </label>
-                <input name="Id" type="number" id="createuser_id" />
+                <input name="Id" type="hidden" value="-2"/>
 
-                <label for="createuser_name">Name: </label>
-                <input name="Name" type="text" id="createuser_name" />
+                <label>Name: </label>
+                <input name="Name" type="text"/>
 
-                <label for="createuser_email">Email: </label>
-                <input name="Email" type="text" id="createuser_email" />
+                <label>Email: </label>
+                <input name="Email" type="text"/>
 
-                <label for="createuser_location">Location: </label>
-                <select name="Location" id="createuser_location">
-                    <option value="Bothell">Bothell</option>
+                <label>Location: </label>
+                <select name="Location">
                     <option value="Atlanta">Atlanta</option>
+                    <option value="Bothell">Bothell</option>
+                    <option value="Boulder">Boulder</option>
+                    <option value="Deerfield">Deerfield</option>
+                    <option value="EastLansing">EastLansing</option>
+                    <option value="Indianapolis">Indianapolis</option>
+                    <option value="Pulaski">Pulaski</option>
+                    <option value="Windsor">Windsor</option>
+                    <option value="WoodlandHills">WoodlandHills</option>
                 </select>
 
-                <input type="submit" value="Create User" />
+                <input type="submit" value="Create User"/>
             </fieldset>
         </form>
-    </div>
 
+        <!--Broken for some unknown reason
+        <h4>Delete a user</h4>
+        <form id="delete_user" onsubmit="return false;">
+            <fieldset>
+                <select name="UserId">
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.Id">@user.Name</option>
+                    }
+                </select>
+
+                <input type="submit" value="Delete User"/>
+            </fieldset>
+        </form>
+        -->
+
+        <br/>
+
+        <h4>Create an Interest Group</h4>
+        <form id="create_interestgroup" onsubmit="return false;">
+            <fieldset>
+                <label>Name: </label>
+                <input name="Name" type="text"/>
+
+                <label>Description: </label>
+                <input name="Description" type="text"/>
+
+                <label>Image Url: </label>
+                <input name="ImageUrl" type="text"/>
+
+                <label>Manager: </label>
+                <select name="ManagerId">
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.Id">@user.Name</option>
+                    }
+                </select>
+
+                <input type="submit" value="Create Interest Group"/>
+            </fieldset>
+        </form>
+
+        <br/>
+
+        <h4>Add User to Interest Group</h4>
+        <form id="adduserto_interestgroup" onsubmit="return false;">
+            <fieldset>
+                <label>Interest Group: </label>
+                <select name="InterestGroupId">
+                    @foreach (var interestGroup in Model.InterestGroups)
+                    {
+                        <option value="@interestGroup.Id">@interestGroup.Name</option>
+                    }
+                </select>
+
+                <label>User: </label>
+                <select name="UserId">
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.Id">@user.Name</option>
+                    }
+                </select>
+
+                <input type="submit" value="Add"/>
+            </fieldset>
+        </form>
+
+        <br />
+
+        <h4>Create an Event</h4>
+        <form id="create_event" onsubmit="return false;">
+            <fieldset>
+                <label>Name: </label>
+                <input name="Name" type="text" />
+
+                <label>Description: </label>
+                <input name="Description" type="text" />
+
+                <label>Time (dd/mm/yyyy hh:mm AM/PM): </label>
+                <input name="Time" type="text" />
+
+                <label>Image Url: </label>
+                <input name="ImageUrl" type="text" />
+
+                <label>Location: </label>
+                <input name="Location" type="text"/>
+
+                <label>Interest Group: </label>
+                <select name="InterestGroupId">
+                    @foreach (var interestGroup in Model.InterestGroups)
+                    {
+                        <option value="@interestGroup.Id">@interestGroup.Name</option>
+                    }
+                </select>
+
+                <input type="submit" value="Create Event" />
+            </fieldset>
+        </form>
+
+        <br />
+
+        <h4>Add User to Event</h4>
+        <form id="adduserto_event" onsubmit="return false;">
+            <fieldset>
+                <label>Event: </label>
+                <select name="EventId">
+                    @foreach (var eventModel in Model.Events)
+                    {
+                        <option value="@eventModel.Id">@eventModel.Name</option>
+                    }
+                </select>
+
+                <label>User: </label>
+                <select name="UserId">
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.Id">@user.Name</option>
+                    }
+                </select>
+
+                <input type="submit" value="Add" />
+            </fieldset>
+        </form>
+
+    </div>
     <br />
     <hr />
     <br />
@@ -48,24 +181,84 @@
     <div>
         <h4>Users</h4>
         <div>
-            <table>
+            <table class="adminTable">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Location</th>
                 </tr>
-                @if(Model != null)
+                @if (Model != null)
                 {
-                    foreach (var user in Model.Users)
-                    {
-                        <tr>
-                            <td>@user.Id</td>
-                            <td>@user.Name</td>
-                            <td>@user.Email</td>
-                            <td>@user.Location</td>
-                        </tr>
-                    }
+                foreach (var user in Model.Users)
+                {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Location</td>
+                </tr>
+                }
+                }
+            </table>
+        </div>
+
+        <h4>Interest Groups</h4>
+        <div>
+            <table class="adminTable">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Manager Name</th>
+                    <th>Member Names</th>
+                </tr>
+                @foreach (var interestGroup in Model.InterestGroups)
+                {
+                    <tr>
+                        <td>@interestGroup.Id</td>
+                        <td>@interestGroup.Name</td>
+                        <td>@interestGroup.Description</td>
+                        <td>@interestGroup.Manager.Name</td>
+                        <td>
+                            @foreach (var user in interestGroup.Members)
+                            {
+                                <span>@user.Name,</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <h4>Events</h4>
+        <div>
+            <table class="adminTable">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Interest Group</th>
+                    <th>Time</th>
+                    <th>Member Names</th>
+                </tr>
+                @foreach (var eventModel in Model.Events)
+                {
+                    <tr>
+                        <td>@eventModel.Id</td>
+                        <td>@eventModel.Name</td>
+                        <td>@eventModel.Description</td>
+                        <td>@eventModel.Location</td>
+                        <td>@eventModel.InterestGroup.Name</td>
+                        <td>@eventModel.Time.ToString("g")</td>
+                        <td>
+                            @foreach (var user in eventModel.Attendees)
+                            {
+                                <span>@user.Name,</span>
+                            }
+                        </td>
+                    </tr>
                 }
             </table>
         </div>
