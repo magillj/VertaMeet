@@ -10,8 +10,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Net.Http.Formatting;
-using VertaMeet.Models;
 using VertaMeet.Data;
+using VertaMeet.Models;
 
 namespace VertaMeet.Controllers
 {

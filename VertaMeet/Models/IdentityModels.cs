@@ -30,10 +30,10 @@ namespace VertaMeet.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<VertaMeet.Models.UserModel> UserModels { get; set; }
+        public System.Data.Entity.DbSet<UserModel> UserModels { get; set; }
 
-        public System.Data.Entity.DbSet<VertaMeet.Models.EventModel> EventModels { get; set; }
+        public System.Data.Entity.DbSet<EventModel> EventModels { get; set; }
 
-        public System.Data.Entity.DbSet<VertaMeet.Models.InterestGroupModel> InterestGroupModels { get; set; }
+        public System.Data.Entity.DbSet<InterestGroupModel> InterestGroupModels { get; set; }
     }
 }

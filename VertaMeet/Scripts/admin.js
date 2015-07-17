@@ -42,7 +42,7 @@ window.onload = function () {
     }, defaultFailFunction); 
 
     attachPostRequest("#create_event", "api/Event/CreateEvent", function (data, textStatus, jqXHR) {
-        alert("Event was successfully deleted");
+        alert("Event was successfully added");
         location.reload();
     }, defaultFailFunction);
 

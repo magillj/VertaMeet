@@ -15,7 +15,8 @@ namespace VertaMeet.Controllers
         {
             return View(new GroupViewModel()
             {
-                InterestGroup = DatabaseInteractor.GetInterestGroupById(id)
+                InterestGroup = DatabaseInteractor.GetInterestGroupById(id),
+                Events = DatabaseInteractor.GetEventsForInterestGroup(id)
             });
         }
     }
