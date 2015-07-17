@@ -15,17 +15,10 @@
     <h1>Interest Groups</h1>
     <div class="tiles red">
         <table>
-            <!--
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>ImageUrl</th>
-            </tr>
-            -->
-            @foreach (var interestGroup in Model.InterestGroups)
-            {
-                <tr>
+                @foreach (var interestGroup in Model.InterestGroups)
+                {
+
                     <td>
                         <div class="live-tile" id="tile1" data-mode="flip">
                             <div>
@@ -39,14 +32,8 @@
                             </div>
                         </div>
                     </td>
-                    <!--
-                    <td>@interestGroup.Id</td>
-                    <td>@interestGroup.Name</td>
-                    <td>@interestGroup.Description</td>
-                    <td>@interestGroup.ImageUrl</td>
-                    -->
-                </tr>
-            }
+                }
+            </tr>
         </table>
     </div>
 </div>
@@ -54,7 +41,7 @@
 <script src="http://www.drewgreenwell.com/Scripts/MetroJs/bundles/MetroJs.js" type="text/javascript"></script>
 <script type="text/javascript">
     //play on hover
-    var $tiles = $("#tile1").liveTile({
+    var $tiles = $("#tile1, #tiles2").liveTile({
         playOnHover: true,
         repeatCount: 0,
         delay: 0,

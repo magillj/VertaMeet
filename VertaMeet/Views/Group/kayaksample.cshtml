@@ -1,6 +1,6 @@
 ﻿@model VertaMeet.Models.GroupViewModel
 @{
-    ViewBag.Title = Model.InterestGroup.Name + " Group";
+    ViewBag.Title =" Group";
 }
 
 <style type="text/css">
@@ -136,32 +136,34 @@
         }
 </style>
 
-<h1 align="center"><b>@Model.InterestGroup.Name Group!</b></h1>
+<h1 align="center"><b>Vertafore Sea Kayaking Group!</b></h1>
 
 <div id="ProfilePage">
     <div id="Photo">
-        <img src=@Model.InterestGroup.ImageUrl>
+        <img src="http://photos3.meetupstatic.com/photos/event/6/8/b/a/600_437186810.jpeg">
     </div>
     <div id="ProfileButtons">
         <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Members</button>    <button id="PhotozB" onclick="photos()">Photos</button>
     </div>
     <div id="ProfileOptions">
-        @Model.InterestGroup.Description
+        Meet other Sea Kayakers. Get together for weeknight social paddles a few times a month. Discuss gear/plan day/overnight trips.<br />
+
+        Previous experience/lessons not needed for some of the day paddles, recommended or required for some of the trips. Trips will be geared for intermediate to adv paddlers. Beginner trips may be added.<br />
+
+        I'll schedule some basic safety meetups to go over things like strokes, bracing, rescues, chart reading and some of the many local resources on about a monthly basis, and would look forward to additional assistant organizers to help out with these and with putting trips together.
+
+        <br />Who's ready to paddle now?
     </div>
     <div id="Members">
-        @foreach (var membr in Model.InterestGroup.Members)
-        {
-            <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
-        }
+        <img id="UserPhoto" src="http://blogs.asce.org/wp-content/uploads/2014/01/M.-Landschoot.jpg">
+        <img id="UserPhoto" src="http://www.brocku.ca/brock-news/wp-content/uploads/cache/3395_NpAdvHover.jpg">
+        <img id="UserPhoto" src="http://defwalls.com/wallpapers-n/women-people-faces-_4209-43.jpg">
     </div>
-    <!--
-        <div id="Photoz">
+    <div id="Photoz">
         <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">
         <img id="UserPhoto" src="http://blog.bluemoonfund.org/wp-content/uploads/2012/04/Beth-kayak-1.jpg">
         <img id="UserPhoto" src="http://www.charlestonoutdooradventures.com/wp-content/uploads/2010/03/DSCN05623.jpg">
     </div>
-    -->
-    
     <h3>Upcoming Events...</h3>
     <div class="tiles red" id="UpcomingEvents">
         <table>
@@ -170,7 +172,7 @@
                     <div class="live-tile" id="tile1" data-mode="flip">
                         <div>
                             <img src="http://alaskamountainguides.com/wp-content/uploads/2011/01/0607-Alaska-Ultimate-Adventure-244_JohnBaton.jpg" height="150" width="150">
-                            <a class="full" href="~/EventView/Index/@Model.InterestGroup.Id">Whidby Island Kayaking</a>
+                            <a class="full" href="#">Whidby Island Kayaking</a>
                             <span class="tile-title">Whidby Island Kayaking</span>
                         </div>
                         <div>
@@ -183,11 +185,11 @@
                     <div class="live-tile" id="tile2" data-mode="flip">
                         <div>
                             <img src="http://3.bp.blogspot.com/-IATdEHIwXW0/T9USxwSTlZI/AAAAAAAAB_g/Tp-WPpN6_Tw/s1600/Ska%CC%88rmavbild+2012-06-09+kl.+10.58.01.png" height="150" width="150">
-                            <a class="full" href="~/EventView/Index/@Model.InterestGroup.Id">Seal Watching</a>
+                            <a class="full" href="#">Seal Watching</a>
                             <span class="tile-title">Seal Watching</span>
                         </div>
                         <div>
-                            <a href="~/EventView/Index/@Model.InterestGroup.Id"><img src="http://www.pelican-point-kayaking.com/page4/files/Kayaking11.jpg" height="150" width="150"></a>
+                            <a href="#"><img src="http://www.pelican-point-kayaking.com/page4/files/Kayaking11.jpg" height="150" width="150"></a>
                             <span class="tile-title">Seal Watching</span>
                         </div>
                     </div>
@@ -196,11 +198,11 @@
                     <div class="live-tile" id="tile3" data-mode="flip">
                         <div>
                             <img src="http://www.bluewaterskayaking.com/wp-content/uploads/beach-camp-scene.jpg" height="150" width="150">
-                            <a class="full" href="~/EventView/Index/@Model.InterestGroup.Id">Beach Camping</a>
+                            <a class="full" href="#">Beach Camping</a>
                             <span class="tile-title">Beach Camping</span>
                         </div>
                         <div>
-                            <a href="~/EventView/Index/@Model.InterestGroup.Id"><img src="http://pointreyesoutdoors.com/sites/default/files/styles/slideshow-650px-175px/public/galleryimages/Girl-Scout-Kayaking_0.jpg?itok=GMQAtECH" height="150" width="150"></a>
+                            <a href="#"><img src="http://pointreyesoutdoors.com/sites/default/files/styles/slideshow-650px-175px/public/galleryimages/Girl-Scout-Kayaking_0.jpg?itok=GMQAtECH" height="150" width="150"></a>
                             <span class="tile-title">Beach Camping</span>
                         </div>
                     </div>
@@ -213,7 +215,7 @@
                             <span class="tile-title">Kayak Fishing</span>
                         </div>
                         <div>
-                            <a href="~/EventView/Index/@Model.InterestGroup.Id"><img src="http://ww1.hdnux.com/photos/33/07/17/7107564/7/622x350.jpg" height="150" width="150"></a>
+                            <a href="#"><img src="http://ww1.hdnux.com/photos/33/07/17/7107564/7/622x350.jpg" height="150" width="150"></a>
                             <span class="tile-title">Kayak Fishing</span>
                         </div>
                     </div>
