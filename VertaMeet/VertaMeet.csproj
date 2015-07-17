@@ -271,6 +271,7 @@
     <Content Include="Views\Group\Index.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
     <Content Include="Views\EventView\Index.cshtml" />
+    <Content Include="Views\Group\kayaksample.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
