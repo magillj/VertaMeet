@@ -1,40 +1,92 @@
-﻿@model VertaMeet.Models.RegisterViewModel
+﻿@model VertaMeet.Models.AdminViewModel
 @{
     ViewBag.Title = "Register";
+}
+@section PageScripts
+{
+    <script src="@Url.Content("~/Scripts/admin.js")"></script>
+}
+@section PageStyles
+{
+    <link href="../../Content/Site.css" type="text/css" rel="stylesheet" />
 }
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+<h4>You like the sound of our service and you're ready to get the ball rolling to exercise your passion within Vertafore! Fill out the form to get started: </h4>
+<form id="create_user" onsubmit="return false;">
+    <fieldset>
+        <input name="Id" type="hidden" value="-2" />
+
+        <label>Name: </label>
+        <input name="Name" type="text" />
+
+        <label>Email: </label>
+        <input name="Email" type="text" />
+
+        <label>Location: </label>
+        <select name="Location">
+            <option value="Atlanta">Atlanta</option>
+            <option value="Bothell">Bothell</option>
+            <option value="Boulder">Boulder</option>
+            <option value="Deerfield">Deerfield</option>
+            <option value="EastLansing">EastLansing</option>
+            <option value="Indianapolis">Indianapolis</option>
+            <option value="Pulaski">Pulaski</option>
+            <option value="Windsor">Windsor</option>
+            <option value="WoodlandHills">WoodlandHills</option>
+        </select>
+
+        <input type="submit" value="Create User" />
+    </fieldset>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong class="">Register</strong>
+
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <div class="checkbox">
+                                    <label class="">
+                                        <input type="checkbox" class="">Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+                                <button type="reset" class="btn btn-default btn-sm">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    Not Registered? <a href="#" class="">Register here</a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
