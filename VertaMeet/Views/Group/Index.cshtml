@@ -166,58 +166,22 @@
     <div class="tiles red" id="UpcomingEvents">
         <table>
             <tr>
-                <td>
-                    <div class="live-tile" id="tile1" data-mode="flip">
-                        <div>
-                            <img src="http://alaskamountainguides.com/wp-content/uploads/2011/01/0607-Alaska-Ultimate-Adventure-244_JohnBaton.jpg" height="150" width="150">
-                            <a class="full" href="~/EventView/Index/@Model.InterestGroup.Id">Whidby Island Kayaking</a>
-                            <span class="tile-title">Whidby Island Kayaking</span>
+                @foreach (var evnt in Model.Events)
+                {
+                    <td>
+                        <div class="live-tile" id="tile1" data-mode="flip">
+                            <div>
+                                <img src="@evnt.ImageUrl" height="150" width="150">
+                                <a class="full" href="~/eventview?eventID=@evnt.Id">@evnt.Name</a>
+                                <span class="tile-title">@evnt.Name</span>
+                            </div>
+                            <div>
+                                <a href="~/eventview?eventID=@evnt.Id"><img src="@evnt.ImageUrl" height="150" width="150"></a>
+                                <span class="tile-title">@evnt.Name</span>
+                            </div>
                         </div>
-                        <div>
-                            <a href="#"><img src="http://www.whidbeycamanoislands.com/images/zoom/zoom_82.jpg" height="150" width="150"></a>
-                            <span class="tile-title">Whidby Island Kayaking</span>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="live-tile" id="tile2" data-mode="flip">
-                        <div>
-                            <img src="http://3.bp.blogspot.com/-IATdEHIwXW0/T9USxwSTlZI/AAAAAAAAB_g/Tp-WPpN6_Tw/s1600/Ska%CC%88rmavbild+2012-06-09+kl.+10.58.01.png" height="150" width="150">
-                            <a class="full" href="~/EventView/Index/@Model.InterestGroup.Id">Seal Watching</a>
-                            <span class="tile-title">Seal Watching</span>
-                        </div>
-                        <div>
-                            <a href="~/EventView/Index/@Model.InterestGroup.Id"><img src="http://www.pelican-point-kayaking.com/page4/files/Kayaking11.jpg" height="150" width="150"></a>
-                            <span class="tile-title">Seal Watching</span>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="live-tile" id="tile3" data-mode="flip">
-                        <div>
-                            <img src="http://www.bluewaterskayaking.com/wp-content/uploads/beach-camp-scene.jpg" height="150" width="150">
-                            <a class="full" href="~/EventView/Index/@Model.InterestGroup.Id">Beach Camping</a>
-                            <span class="tile-title">Beach Camping</span>
-                        </div>
-                        <div>
-                            <a href="~/EventView/Index/@Model.InterestGroup.Id"><img src="http://pointreyesoutdoors.com/sites/default/files/styles/slideshow-650px-175px/public/galleryimages/Girl-Scout-Kayaking_0.jpg?itok=GMQAtECH" height="150" width="150"></a>
-                            <span class="tile-title">Beach Camping</span>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="live-tile" id="tile3" data-mode="flip">
-                        <div>
-                            <img src="http://www.malibukayaks.com/wp-content/uploads/Malibu-Kayaks-Mini-X-Stealth-9-Fishing-Kayaks.jpg" height="150" width="150">
-                            <a class="full" href="#">Kayak Fishing</a>
-                            <span class="tile-title">Kayak Fishing</span>
-                        </div>
-                        <div>
-                            <a href="~/EventView/Index/@Model.InterestGroup.Id"><img src="http://ww1.hdnux.com/photos/33/07/17/7107564/7/622x350.jpg" height="150" width="150"></a>
-                            <span class="tile-title">Kayak Fishing</span>
-                        </div>
-                    </div>
-                </td>
+                    </td>
+                }
             </tr>
         </table>
     </div>
