@@ -1,6 +1,6 @@
 ﻿@model VertaMeet.Models.EventViewModel
 @{
-    ViewBag.Title = Model.Event.Name + "Event!";
+    ViewBag.Title = Model.Event.Name + " Group";
 }
 
 <style type="text/css">
@@ -27,7 +27,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #Members {
@@ -40,7 +40,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #Photoz {
@@ -53,7 +53,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #UserPhoto {
@@ -77,7 +77,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #LeftCol {
@@ -135,71 +135,54 @@
             border: 1px solid purple;
         }
 </style>
+<div class="container">
+    <div class="box">
+        <div class="col-lg-12">
+            <hr>
+            <h2 class="intro-text text-center">
+                <strong>Welcome to the @Model.Event.Name Group!</strong>
+            </h2>
+            <hr>
+            <img class="img-responsive img-border img-center" src="@Model.Event.ImageUrl" alt="">
+            <hr class="visible-xs">
+            <div id="ProfileButtons">
+                <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Attendees</button>    <button id="PhotozB" onclick="photos()">Photos</button>
+            </div>
+            <div id="ProfileOptions">
+                <p>@Model.Event.Description</p>
+            </div>
+            <div id="Members">
+                @foreach (var membr in Model.Event.Attendees)
+                {
+                    <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
+                }
+            </div>
+            <!--
+            <div id="Photoz">
+            <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">
+            <img id="UserPhoto" src="http://blog.bluemoonfund.org/wp-content/uploads/2012/04/Beth-kayak-1.jpg">
+            <img id="UserPhoto" src="http://www.charlestonoutdooradventures.com/wp-content/uploads/2010/03/DSCN05623.jpg">
+            </div>
+            -->
 
-<!--
-    <h1>hello world</h1>
-    <div>Event name: @Model.Event.Name</div>
-    <div>Description: @Model.Event.Description</div>
-    <div>Number of attendees: @Model.Event.Attendees.Count</div>
-    <img src="@Model.Event.ImageUrl" alt="Event Image"/>
--->
-
-<h1 align="center"><b>@Model.Event.Name!</b></h1>
-
-<div id="ProfilePage">
-    <div id="Photo">
-        <img src=@Model.Event.ImageUrl>
+        </div>
     </div>
-    <div id="ProfileButtons">
-        <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Members</button>    <button id="PhotozB" onclick="photos()">Photos</button>
-    </div>
-    <div id="ProfileOptions">
-        @Model.Event.Description
-    </div>
-    <div id="Members">
-        @foreach (var membr in Model.Event.Attendees)
-        {
-            <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
-        }
-    </div>
-        <div id="Photoz">
-        <img id="UserPhoto" src="@Model.Event.ImageUrl">
-        <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">
-        <img id="UserPhoto" src="http://blog.bluemoonfund.org/wp-content/uploads/2012/04/Beth-kayak-1.jpg">
-        <img id="UserPhoto" src="http://www.charlestonoutdooradventures.com/wp-content/uploads/2010/03/DSCN05623.jpg">
-    </div>
-
-    <!-- Needed because other elements inside ProfilePage have floats -->
-    <div style="clear:both"></div>
 </div>
 
-<script src="http://www.drewgreenwell.com/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
-<script src="http://www.drewgreenwell.com/Scripts/MetroJs/bundles/MetroJs.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-    //play on hover
-    var $tiles = $("#tile1, #tile2, #tile3").liveTile({
-        playOnHover: true,
-        repeatCount: 0,
-        delay: 0,
-        startNow: false
-    });
-</script>
-
 <script>
-        function about() {
-            document.getElementById("ProfileOptions").style.display = "block";
-            document.getElementById("Members").style.display = "none";
-            document.getElementById("Photoz").style.display = "none";
-        }
-        function members() {
-            document.getElementById("ProfileOptions").style.display = "none";
-            document.getElementById("Members").style.display = "block";
-            document.getElementById("Photoz").style.display = "none";
-        }
-        function photos() {
-            document.getElementById("ProfileOptions").style.display = "none";
-            document.getElementById("Members").style.display = "none";
-            document.getElementById("Photoz").style.display = "block";
-        }
+    function about() {
+        document.getElementById("ProfileOptions").style.display = "block";
+        document.getElementById("Members").style.display = "none";
+        document.getElementById("Photoz").style.display = "none";
+    }
+    function members() {
+        document.getElementById("ProfileOptions").style.display = "none";
+        document.getElementById("Members").style.display = "block";
+        document.getElementById("Photoz").style.display = "none";
+    }
+    function photos() {
+        document.getElementById("ProfileOptions").style.display = "none";
+        document.getElementById("Members").style.display = "none";
+        document.getElementById("Photoz").style.display = "block";
+    }
 </script>
