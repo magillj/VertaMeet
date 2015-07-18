@@ -27,7 +27,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #Members {
@@ -40,7 +40,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #Photoz {
@@ -53,7 +53,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #UserPhoto {
@@ -77,7 +77,7 @@
         margin-top: 10px;
         width: 75%;
         /* For visibility. Delete me */
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     #LeftCol {
@@ -135,81 +135,70 @@
             border: 1px solid purple;
         }
 </style>
-
-<h1 align="center"><b>@Model.InterestGroup.Name Group!</b></h1>
-
-<div id="ProfilePage">
-    <div id="Photo">
-        <img src=@Model.InterestGroup.ImageUrl>
-    </div>
-    <div id="ProfileButtons">
-        <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Members</button>    <button id="PhotozB" onclick="photos()">Photos</button>
-    </div>
-    <div id="ProfileOptions">
-        @Model.InterestGroup.Description
-    </div>
-    <div id="Members">
-        @foreach (var membr in Model.InterestGroup.Members)
-        {
-            <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
-        }
-    </div>
-    <!--
-        <div id="Photoz">
-        <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">
-        <img id="UserPhoto" src="http://blog.bluemoonfund.org/wp-content/uploads/2012/04/Beth-kayak-1.jpg">
-        <img id="UserPhoto" src="http://www.charlestonoutdooradventures.com/wp-content/uploads/2010/03/DSCN05623.jpg">
-    </div>
-    -->
-    
-    <h3>Upcoming Events...</h3>
-    <div class="tiles red" id="UpcomingEvents">
-        <table>
-            <tr>
-                @foreach (var evnt in Model.Events)
+<div class="container">
+    <div class="box">
+        <div class="col-lg-12">
+            <hr>
+            <h2 class="intro-text text-center">
+                <strong>Welcome to the @Model.InterestGroup.Name Group!</strong>
+            </h2>
+            <hr>
+            <img class="img-responsive img-border img-center" src="@Model.InterestGroup.ImageUrl" alt="">
+            <hr class="visible-xs">
+            <div id="ProfileButtons">
+                <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Members</button>    <button id="PhotozB" onclick="photos()">Photos</button>
+            </div>
+            <div id="ProfileOptions">
+                <p>@Model.InterestGroup.Description</p>
+            </div>
+            <div id="Members">
+                @foreach (var membr in Model.InterestGroup.Members)
                 {
-                    <td>
-                        <div class="live-tile" id="tile1" data-mode="flip">
-                            <div>
-                                <img src="@evnt.ImageUrl" height="150" width="150">
-                                <a class="full" href="~/eventview?eventID=@evnt.Id">@evnt.Name</a>
-                                <span class="tile-title">@evnt.Name</span>
-                            </div>
-                            <div>
-                                <a href="~/eventview?eventID=@evnt.Id"><img src="@evnt.ImageUrl" height="150" width="150"></a>
-                                <span class="tile-title">@evnt.Name</span>
-                            </div>
-                        </div>
-                    </td>
+                    <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
                 }
-            </tr>
-        </table>
-    </div>
-    <div id="Info">
-        <p>
-        <strong>Name:</strong>
-         <span>Sirjon</span>
-        </p>
-        <p>
-        <strong>Name:</strong>
-        <span>Sirjon</span>
-        </p>
-        <p>
-        <strong>Name:</strong>
-          <span>Sirjon</span>
-         </p>
-          <p>
-         <strong>Name:</strong>
-        <span>Sirjon</span>
-         </p>
-         <p>
-        <strong>Name:</strong>
-        <span>Sirjon</span>
-        </p>
-         </div>
+            </div>
+            <!--
+            <div id="Photoz">
+            <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">
+            <img id="UserPhoto" src="http://blog.bluemoonfund.org/wp-content/uploads/2012/04/Beth-kayak-1.jpg">
+            <img id="UserPhoto" src="http://www.charlestonoutdooradventures.com/wp-content/uploads/2010/03/DSCN05623.jpg">
+            </div>
+            -->
 
-            <!-- Needed because other elements inside ProfilePage have floats -->
-            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="col-lg-12">
+            <hr>
+            <h2 class="intro-text text-center">
+                <strong>Come check out our upcoming events in the @Model.InterestGroup.Name Group!</strong>
+            </h2>
+            <hr>
+            <hr class="visible-xs">
+            <div class="tiles red" id="UpcomingEvents">
+                <table>
+                    <tr>
+                        @foreach (var evnt in Model.Events)
+                        {
+                            <td>
+                                <div class="live-tile" id="tile1" data-mode="flip">
+                                    <div>
+                                        <img src="@evnt.ImageUrl" height="150" width="150">
+                                        <a class="full" href="~/eventview?eventID=@evnt.Id">@evnt.Name</a>
+                                        <span class="tile-title">@evnt.Name</span>
+                                    </div>
+                                    <div>
+                                        <a href="~/eventview?eventID=@evnt.Id"><img src="@evnt.ImageUrl" height="150" width="150"></a>
+                                        <span class="tile-title">@evnt.Name</span>
+                                    </div>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="http://www.drewgreenwell.com/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
