@@ -6,6 +6,7 @@ using System.Web;
 using System.Data;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Common;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.SqlClient;
 using VertaMeet.Models;
 
@@ -133,6 +134,23 @@ namespace VertaMeet.Data
             return Int32.Parse((string)ExecuteSqlReader("GetHighestUserId", readHighestUser));
         }
 
+        public static List<string> GetImagesForInterestGroup(int interestGroupId)
+        {
+            Func<SqlDataReader, List<string>> readInterestGroup = delegate(SqlDataReader rdr)
+            {
+                List<string> images = new List<string>();
+                while (rdr.Read())
+                {
+                    images.Add((string)rdr["ImageUrl"]);
+                }
+                return images;
+            };
+
+            List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@interestGroupId", interestGroupId) };
+
+            return (List<string>)ExecuteSqlReader("GetInterestGroupImages", readInterestGroup, parameters);
+        } 
+
         /// <summary>
         /// Gets data about the user with userId
         /// </summary>
@@ -168,6 +186,27 @@ namespace VertaMeet.Data
         #endregion
 
         #region Modify
+
+        public static DatabaseInteractionResponse AddImageToInterestGroup(int interestGroupId, string imageUrl)
+        {
+            // Check if image is already in Interest Group
+            if (GetImagesForInterestGroup(interestGroupId).Contains(imageUrl))
+            {
+                return new DatabaseInteractionResponse()
+                {
+                    Success = false,
+                    Message = "Image is already associated with that interest group"
+                };
+            }
+
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@interestGroupId", interestGroupId),
+                new SqlParameter("@imageUrl", imageUrl)
+            };
+
+            return ExecuteSqlNonQuery("AddImageToInterestGroup", parameters);
+        }
 
         public static DatabaseInteractionResponse AddUserToEvent(int eventId, int userId)
         {
