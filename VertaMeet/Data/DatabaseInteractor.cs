@@ -546,10 +546,10 @@ namespace VertaMeet.Data
 
         private static InterestGroupModel GetInterestGroupModelFromReader(SqlDataReader rdr)
         {
-            //rdr["Attendees"];
             return new InterestGroupModel()
             {
                 Description = rdr["Description"].ToString(),
+                ImageGallery = GetImagesForInterestGroup((int)rdr["InterestGroupId"]),
                 Id = (int)rdr["InterestGroupId"],
                 ImageUrl = rdr["ImageUrl"].ToString(),
                 Manager = GetUserById((int)rdr["ManagerId"]),
