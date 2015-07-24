@@ -14,7 +14,9 @@ namespace VertaMeet.Data
 {
     public static class DatabaseInteractor
     {
-        private static readonly string SqlConnectionStr = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["VertaMeetDataEntities"].ConnectionString).ProviderConnectionString;
+        //private static readonly string SqlConnectionStr = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["VertaMeetDataEntities"].ConnectionString).ProviderConnectionString;
+        private static readonly string SqlConnectionStr =
+            ConfigurationManager.ConnectionStrings["VertaMeetDataEntities"].ConnectionString;
 
         #region Get
 
