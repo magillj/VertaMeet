@@ -40,9 +40,9 @@ function attachPostRequest(formSelector, url, successCallback, errorCallback) {
 function checkCookie() {
     if (!getCookie("userId")) {
         // Ask them to sign up, then we'll assign a cookie
-        $("#login-modal").display = "block";
+        $("#login-modal").show();
         attachPostRequest("#initial-login-form", "api/User/CreateUser", function (data, textStatus, jqXHR) {
-            $("#login-modal").display = "none";
+            $("#login-modal").hide();
             setCookie("userId", data.Id, 9999);
             setCookie("userName", data.Name, 9999);
             // Doing this avoids reloading the page
@@ -54,4 +54,6 @@ function checkCookie() {
 };
 
 // Run functions
-checkCookie();
+window.onload = function() {
+    //checkCookie();
+};
