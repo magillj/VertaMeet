@@ -1,21 +1,4 @@
-﻿function attachPostRequest(elemId, url, successCallback, errorCallback) {
-    $(elemId).on("submit", function (e) {
-        var postData = $(elemId).serializeArray();
-        $.ajax(
-        {
-            url: url,
-            type: "POST",
-            data: postData,
-            mimeType: "Application/JSON",
-            success: successCallback,
-            error: errorCallback
-        });
-
-        e.preventDefault();
-    });
-};
-
-var defaultFailFunction = function (jqXHR, textStatus, errorThrown) {
+﻿var defaultFailFunction = function (jqXHR, textStatus, errorThrown) {
     alert("Failed: " + jqXHR.responseText);
 }
 

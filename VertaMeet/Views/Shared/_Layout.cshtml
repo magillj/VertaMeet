@@ -28,6 +28,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
 
+    <script src="@Url.Content("~/Scripts/common.js")"></script>
+
     @RenderSection("PageScripts", false /*required*/)
     @RenderSection("PageStyles", false /*required*/)
 
@@ -68,7 +70,9 @@
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    <li><span id="current-user-name">@Request.Cookies["userName"]</span></li>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
