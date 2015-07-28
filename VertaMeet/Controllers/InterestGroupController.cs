@@ -50,7 +50,7 @@ namespace VertaMeet.Controllers
 
             if (result.Success)
             {
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, interestGroupModel);
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest, "Interest group could not be created. The following error occurred: " + result.Message);

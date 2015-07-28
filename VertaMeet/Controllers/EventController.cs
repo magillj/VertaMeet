@@ -45,7 +45,7 @@ namespace VertaMeet.Controllers
 
             if (result.Success)
             {
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, eventModel);
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest, "Event could not be created. The following error occurred: " + result.Message);
