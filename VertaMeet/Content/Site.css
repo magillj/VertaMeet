@@ -51,3 +51,27 @@ table.adminTable td {
 	border-style: solid;
 	border-color: #999999;
 }
+
+.login {
+  position: center;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 20%;
+  background: white;
+  border-radius: 3px;
+  @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -8px; right: -8px; bottom: -8px; left: -8px;
+    z-index: -1;
+    background: rgba(black, .08);
+    border-radius: 4px;
+  }
+
+.login input {
+    position:center;
+    width:100%;
+    clear: both;
+}
