@@ -146,7 +146,7 @@
             <img class="img-responsive img-border img-center" src="@Model.Event.ImageUrl" alt="">
             <hr class="visible-xs">
             <div id="ProfileButtons">
-                <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Attendees</button>    <button id="PhotozB" onclick="photos()">Photos</button>
+                <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Attendees</button>
             </div>
             <div id="ProfileOptions">
                 <p>@Model.Event.Description</p>
@@ -157,6 +157,8 @@
                     <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
                 }
             </div>
+
+            <!-- Image Gallery for Events not implemented -->
             <!--
             <div id="Photoz">
             <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">

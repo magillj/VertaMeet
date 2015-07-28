@@ -157,13 +157,14 @@
                     <a href="#" title=@membr.Name><img id="UserPhoto" src="http://lwos.lastwordonsports.netdna-cdn.com/lwos-content/uploads/2013/07/silhouette.jpg" alt=@membr.Name></a>
                 }
             </div>
-            <!--
+            
+            <!-- Image Gallery for Groups -->
+            <!-- Should work, not definate yet, though. -->
             <div id="Photoz">
-            <img id="UserPhoto" src="https://upload.wikimedia.org/wikipedia/en/6/65/Sea_Kayaking_Wilsons_Promontory.jpg">
-            <img id="UserPhoto" src="http://blog.bluemoonfund.org/wp-content/uploads/2012/04/Beth-kayak-1.jpg">
-            <img id="UserPhoto" src="http://www.charlestonoutdooradventures.com/wp-content/uploads/2010/03/DSCN05623.jpg">
+                @foreach (var photo in Model.InterestGroup.ImageGallery) { 
+                    <img id="UserPhoto" src=@photo>
+                }
             </div>
-            -->
 
         </div>
     </div>
