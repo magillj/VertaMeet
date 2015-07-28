@@ -145,8 +145,9 @@
             <hr>
             <img class="img-responsive img-border img-center" src="@Model.Event.ImageUrl" alt="">
             <hr class="visible-xs">
-            <div id="ProfileButtons">
-                <button id="AboutB" onclick="about()">About</button>    <button id="MembersB" onclick="members()">Attendees</button>
+            <div id="ProfileButtons" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" id="AboutB" onclick="about()">About</button>
+                <button type="button" class="btn btn-default" id="MembersB" onclick="members()">Attendees</button>
             </div>
             <div id="ProfileOptions">
                 <p>@Model.Event.Description</p>
