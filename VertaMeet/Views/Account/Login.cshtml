@@ -22,32 +22,36 @@
                 <hr class="visible-xs">
                 <p>You like the sound of our service and you're ready to get the ball rolling to exercise your passion within Vertafore! Fill out the form to get started!:</p>
                 <hr class="visible-xs">
-                <form id="create_user" onsubmit="return false;">
-                    <fieldset>
-                        <input name="Id" type="hidden" value="-2" />
+                <div class="login">
+                    <form id="inital-login-form" onsubmit="return false;">
+                        <fieldset>
+                            <input name="Id" type="hidden" value="-2" />
 
-                        <label>Name: </label>
-                        <input name="Name" type="text" />
-
-                        <label>Email: </label>
-                        <input name="Email" type="text" />
-
-                        <label>Location: </label>
-                        <select name="Location">
-                            <option value="Atlanta">Atlanta</option>
-                            <option value="Bothell">Bothell</option>
-                            <option value="Boulder">Boulder</option>
-                            <option value="Deerfield">Deerfield</option>
-                            <option value="EastLansing">EastLansing</option>
-                            <option value="Indianapolis">Indianapolis</option>
-                            <option value="Pulaski">Pulaski</option>
-                            <option value="Windsor">Windsor</option>
-                            <option value="WoodlandHills">WoodlandHills</option>
-                        </select>
-
-                        <input type="submit" value="Register!" />
-                    </fieldset>
-                </form>
+                            <label>Name: </label>
+                            <input name="Name" type="text" required />
+                            <br />
+                            <label>Email: </label>
+                            <input name="Email" type="text" required />
+                            <br />
+                            <label>Location: </label>
+                            <select name="Location" required>
+                                <option disabled selected value=""> -- Select a Location -- </option>
+                                <option value="Atlanta">Atlanta</option>
+                                <option value="Bothell">Bothell</option>
+                                <option value="Boulder">Boulder</option>
+                                <option value="Deerfield">Deerfield</option>
+                                <option value="EastLansing">EastLansing</option>
+                                <option value="Indianapolis">Indianapolis</option>
+                                <option value="Pulaski">Pulaski</option>
+                                <option value="Windsor">Windsor</option>
+                                <option value="WoodlandHills">WoodlandHills</option>
+                            </select>
+                            <br />
+                            <br />
+                            <input type="submit" value="Login!" />
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
