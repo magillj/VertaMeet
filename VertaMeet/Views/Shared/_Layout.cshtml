@@ -185,9 +185,12 @@ form.signin input::-webkit-input-placeholder {
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><span id="current-user-name">@Request.Cookies["userName"]</span></li>
-                </ul>
+                <span id="current-user-name">
+                    @if (@Request.Cookies["userName"] != null)
+                    {
+                        @Request.Cookies["userName"].Value
+                    }
+                </span>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -200,7 +203,7 @@ form.signin input::-webkit-input-placeholder {
 
         <div id="login-modal" class="login-popup">
             <a href="#" class="close"></a>
-            <form method="post" class="signin" id="initial-login-form" action="#">
+            <form method="post" class="signin" id="initial-login-form" onsubmit="return false;">
                 <fieldset class="textbox">
                     <label class="username">
                         <span>Name</span>
@@ -225,7 +228,7 @@ form.signin input::-webkit-input-placeholder {
                             <option value="WoodlandHills">WoodlandHills</option>
                         </select>
                     </label>
-                    <button class="submit button" type="button">Sign in</button>
+                    <button class="submit button" type="submit">Sign in</button>
                 </fieldset>
             </form>
         </div>

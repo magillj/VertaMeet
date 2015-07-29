@@ -43,10 +43,11 @@ function checkCookie() {
         $("#login-modal").show();
         attachPostRequest("#initial-login-form", "api/User/CreateUser", function (data, textStatus, jqXHR) {
             $("#login-modal").hide();
-            setCookie("userId", data.Id, 9999);
-            setCookie("userName", data.Name, 9999);
+            var user = JSON.parse(data);
+            setCookie("userId", user.Id, 9999);
+            setCookie("userName", user.Name, 9999);
             // Doing this avoids reloading the page
-            $("current-user-name").html(data.name);
+            $("#current-user-name").html(user.name);
         }, function () {
             alert("An error occurred while processing your login. Please try again or refresh.");
         });
@@ -55,5 +56,5 @@ function checkCookie() {
 
 // Run functions
 window.onload = function() {
-    //checkCookie();
+    checkCookie();
 };
