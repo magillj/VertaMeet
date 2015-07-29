@@ -5,8 +5,8 @@
  */
 
 body {
-    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    background: url('http://wallsaved.com/wp-content/uploads/2014/05/free-background-wallpaper-for-websites.jpg') no-repeat center center fixed;
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,"Roboto";
+    background: #808080;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -161,9 +161,11 @@ footer p {
     }
 
     .navbar-default {
-        border: none;
-        background: #fff;
-        background: rgba(255,255,255,0.9);
+        background: #ff6a00;
+        border : 30px solid #ff6a00; 
+        background: #ff6a00 url('https://c1.staticflickr.com/1/460/19249552213_e99c258e7c_m.jpg'); 
+        background-position: left; 
+        background-repeat: no-repeat;
     }
 
     .nav>li>a {

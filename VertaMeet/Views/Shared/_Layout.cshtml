@@ -8,14 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>VertaMeet -@ViewBag.Title</title>
+    <!-- Logo -->
     <link rel="icon" type="image/png" href="https://c1.staticflickr.com/1/460/19249552213_e99c258e7c_m.jpg" />
     <!-- Bootstrap Core CSS -->
     <link href="http://rstudio.github.io/shinydashboard/libs/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="http://ironsummitmedia.github.io/startbootstrap-business-casual/css/business-casual.css" rel="stylesheet">
+    @Styles.Render("~/Content/business-casual.css")
     <!-- Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,6 +24,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Modal Style, needs to be put into site style sheet -->
     <style>
         .modal {
             display: none;
@@ -59,6 +60,7 @@
     @RenderSection("PageScripts", false /*required*/)
     @RenderSection("PageStyles", false /*required*/)
 
+    <!-- Tile CSS/JS -->
     <script src="http://www.drewgreenwell.com/Scripts/MetroJs/bundles/MetroJs.js"></script>
     <script src="http://rstudio.github.io/shinydashboard/libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
     <script src="http://rstudio.github.io/shinydashboard/libs/bootstrap-3.3.1/shim/respond.min.js"></script>
@@ -66,13 +68,14 @@
     <link rel="stylesheet" href="http://rstudio.github.io/shinydashboard/custom.css" type="text/css" />
     <link rel="stylesheet" href="http://www.drewgreenwell.com/Scripts/MetroJs/bundles/MetroJs.css" type="text/css" />
 </head>
+
 <body style="background: #808080">
     <div class="brand">VertaMeet</div>
-    <div class="address-bar">Where Employees Come Together</div>
+    <div class="address-bar">Where Vertafore Employees Come Together <br/> To Unleash their potential</div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation" style="border : 30px solid #ff6a00; background: #ff6a00 url('https://c1.staticflickr.com/1/460/19249552213_e99c258e7c_m.jpg'); background-position: left; background-repeat: no-repeat;">
-        <div class="container">
+    <nav class="navbar navbar-default" role="navigation" >
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -81,7 +84,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
