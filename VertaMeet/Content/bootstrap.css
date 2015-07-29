@@ -5610,7 +5610,8 @@ body.modal-open,
   margin-right: 15px;
 }
 
-.modal {
+/*
+    .modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -5621,6 +5622,8 @@ body.modal-open,
   overflow: auto;
   overflow-y: scroll;
 }
+*/
+
 
 .modal.fade .modal-dialog {
   -webkit-transform: translate(0, -25%);
@@ -5647,7 +5650,9 @@ body.modal-open,
 }
 
 .modal-content {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 25%;
   background-color: #ffffff;
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
