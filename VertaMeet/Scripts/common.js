@@ -59,3 +59,19 @@ window.onload = function() {
     checkCookie();
 };
 
+//Button Click functions (Groups and Events)
+function about() {
+    document.getElementById("ProfileOptions").style.display = "block";
+    document.getElementById("Members").style.display = "none";
+    document.getElementById("Photoz").style.display = "none";
+}
+function members() {
+    document.getElementById("ProfileOptions").style.display = "none";
+    document.getElementById("Members").style.display = "block";
+    document.getElementById("Photoz").style.display = "none";
+}
+function photos() {
+    document.getElementById("ProfileOptions").style.display = "none";
+    document.getElementById("Members").style.display = "none";
+    document.getElementById("Photoz").style.display = "block";
+}

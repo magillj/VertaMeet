@@ -1,12 +1,79 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
+﻿
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+ .navbar-default .VertaMeetIcon {
+    background-image: url('https://c1.staticflickr.com/1/460/19249552213_e99c258e7c_m.jpg');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 55px;
+    position: absolute;
+    top: 12px;
+}
+
+@media (max-width: 768px) {
+    #current-user-name {
+        display: none;
+    }
+}
+
+#current-user-name {
+    position: absolute;
+    right: 30px;
+    top: 25px;
+    font-size: 18px;
+}
+    
+.navbar-default .nav.navbar-nav.navbar-left {
+    margin-left: 150px; 
+}
+
+.contentContainer {
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+.container.body-content {
+    padding: 0;
+}
+     
+.navbar-default {
+    padding: 15px; 
+}
+
+@media (min-width: 768px) {
+    .contentContainer {
+        max-width: 790px;
+        background-color: #DDDDDD;
+    }
+}
+
+@media (min-width: 992px) {
+    .contentContainer {
+        max-width: 1010px;
+        background-color: #DDDDDD;
+    }
+}
+
+@media (min-width: 1200px) {
+    .contentContainer {
+        max-width: 1210px;
+        background-color: #DDDDDD;
+    }
+}
+
+body footer {
+    margin: 20px 0 0 0;
+    background: #222222;
+}
+
+body footer p{
+    padding: 20px 0; 
+    color: white;
+    font-size: 18px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -52,14 +119,14 @@ table.adminTable td {
 	border-color: #999999;
 }
 
-.login {
+/*.login {
   position: center;
   margin: 0 auto;
   padding: 20px 20px 20px;
   width: 20%;
   background: white;
   border-radius: 3px;
-  @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
+  @include: box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
 
   &:before {
     content: '';
@@ -68,7 +135,7 @@ table.adminTable td {
     z-index: -1;
     background: rgba(black, .08);
     border-radius: 4px;
-  }
+  }*/
 
 .login input {
     position:center;
@@ -76,3 +143,154 @@ table.adminTable td {
     clear: both;
 }
 
+#login-modal label {
+   display: block;
+   padding: 15px 10px;
+}
+
+#login-modal .modal-content {
+    left: calc(50% - 158px);
+    top: calc(50% - 180px);
+}
+
+#login-modal button.submit {
+   width: 285px;
+   margin: 0 10px;
+   padding: 5px;
+}
+
+#login-modal label span {
+   padding-right: 10px;
+}
+
+/* Button Positioning CSS (Event and Group) */
+#ProfilePage {
+    /* Move it off the top of the page, then centre it horizontally */
+    margin: 15px auto;
+    width: 75%;
+    /* For visibility. Delete me */
+    border: 1px solid red;
+    text-align: center;
+}
+
+#ProfileButtons {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+}
+
+#ProfileOptions {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 75%;
+    /* For visibility. Delete me */
+    /*border: 1px solid black;*/
+}
+
+#Members {
+    display: none;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 75%;
+    /* For visibility. Delete me */
+    /*border: 1px solid black;*/
+}
+
+#Photoz {
+    display: none;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 75%;
+    /* For visibility. Delete me */
+    /*border: 1px solid black;*/
+}
+
+#UserPhoto {
+    display: inline;
+    width: 50px;
+    height: 50px;
+}
+
+#DisplayPhotos {
+    display: inline;
+    width: 50px;
+    height: 50px;
+}
+
+#UpcomingEvents {
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 75%;
+    /* For visibility. Delete me */
+    /*border: 1px solid black;*/
+}
+
+#LeftCol {
+    /* Move it to the left */
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    /* Move it away from the content */
+    margin-right: 20px;
+    /* For visibility. Delete me */
+    border: 1px solid brown;
+}
+
+#Photo {
+    /* Width and height of photo container */
+    width: 300px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    /* For visibility. Delete me */
+    border: 1px solid green;
+}
+
+#PhotoOptions {
+    text-align: center;
+    width: 200px;
+    /* For visibility. Delete me */
+    border: 1px solid brown;
+}
+
+#Info {
+    visibility: hidden; /*Temp*/
+    width: 400px;
+    text-align: center;
+    /* Move it to the right */
+    float: right;
+    /* For visibility. Delete me */
+    border: 1px solid blue;
+}
+
+#Info strong {
+    /* Give it a width */
+    display: inline-block;
+    width: 100px;
+    /* For visibility. Delete me */
+    border: 1px solid orange;
+}
+
+#Info span {
+    /* Give it a width */
+    display: inline-block;
+    width: 250px;
+    /* For visibility. Delete me */
+    border: 1px solid purple;
+}

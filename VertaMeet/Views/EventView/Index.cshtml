@@ -1,140 +1,13 @@
 ﻿@model VertaMeet.Models.EventViewModel
 @{
-    ViewBag.Title = Model.Event.Name + " Group";
+    ViewBag.Title = Model.Event.Name;
 }
 
-<style type="text/css">
-    #ProfilePage {
-        /* Move it off the top of the page, then centre it horizontally */
-        margin: 15px auto;
-        width: 75%;
-        /* For visibility. Delete me */
-        border: 1px solid red;
-        text-align: center;
-    }
+@section PageStyles
+{
+    <link href="../../Content/Site.css" type="text/css" rel="stylesheet" />
+}
 
-    #ProfileButtons {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 60px;
-    }
-
-    #ProfileOptions {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        width: 75%;
-        /* For visibility. Delete me */
-        /*border: 1px solid black;*/
-    }
-
-    #Members {
-        display: none;
-        align-content: center;
-        align-items: center;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        width: 75%;
-        /* For visibility. Delete me */
-        /*border: 1px solid black;*/
-    }
-
-    #Photoz {
-        display: none;
-        align-content: center;
-        align-items: center;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        width: 75%;
-        /* For visibility. Delete me */
-        /*border: 1px solid black;*/
-    }
-
-    #UserPhoto {
-        display: inline;
-        width: 50px;
-        height: 50px;
-    }
-
-    #DisplayPhotos {
-        display: inline;
-        width: 50px;
-        height: 50px;
-    }
-
-    #UpcomingEvents {
-        align-content: center;
-        align-items: center;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        width: 75%;
-        /* For visibility. Delete me */
-        /*border: 1px solid black;*/
-    }
-
-    #LeftCol {
-        /* Move it to the left */
-        display: inline-block;
-        width: 200px;
-        text-align: center;
-        /* Move it away from the content */
-        margin-right: 20px;
-        /* For visibility. Delete me */
-        border: 1px solid brown;
-    }
-
-    #Photo {
-        /* Width and height of photo container */
-        width: 300px;
-        height: 200px;
-        margin-top: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        /* For visibility. Delete me */
-        border: 1px solid green;
-    }
-
-    #PhotoOptions {
-        text-align: center;
-        width: 200px;
-        /* For visibility. Delete me */
-        border: 1px solid brown;
-    }
-
-    #Info {
-        visibility: hidden; /*Temp*/
-        width: 400px;
-        text-align: center;
-        /* Move it to the right */
-        float: right;
-        /* For visibility. Delete me */
-        border: 1px solid blue;
-    }
-
-        #Info strong {
-            /* Give it a width */
-            display: inline-block;
-            width: 100px;
-            /* For visibility. Delete me */
-            border: 1px solid orange;
-        }
-
-        #Info span {
-            /* Give it a width */
-            display: inline-block;
-            width: 250px;
-            /* For visibility. Delete me */
-            border: 1px solid purple;
-        }
-</style>
 <div class="container">
     <div class="box">
         <div class="col-lg-12">
@@ -172,20 +45,3 @@
     </div>
 </div>
 
-<script>
-    function about() {
-        document.getElementById("ProfileOptions").style.display = "block";
-        document.getElementById("Members").style.display = "none";
-        document.getElementById("Photoz").style.display = "none";
-    }
-    function members() {
-        document.getElementById("ProfileOptions").style.display = "none";
-        document.getElementById("Members").style.display = "block";
-        document.getElementById("Photoz").style.display = "none";
-    }
-    function photos() {
-        document.getElementById("ProfileOptions").style.display = "none";
-        document.getElementById("Members").style.display = "none";
-        document.getElementById("Photoz").style.display = "block";
-    }
-</script>

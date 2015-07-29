@@ -13,6 +13,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="http://rstudio.github.io/shinydashboard/libs/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
+    @Styles.Render("~/Content/Site.css")
     @Styles.Render("~/Content/business-casual.css")
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -70,11 +71,9 @@
 </head>
 
 <body style="background: #808080">
-    <div class="brand">VertaMeet</div>
-    <div class="address-bar">Where Vertafore Employees Come Together <br/> To Unleash their potential</div>
-
     <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation" >
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="VertaMeetIcon"></div>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -87,7 +86,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-left">
                     <li>
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>
@@ -99,6 +98,7 @@
                     </li>
                 </ul>
                 <span id="current-user-name">
+                    Welcome, 
                     @if (@Request.Cookies["userName"] != null)
                     {
                         @Request.Cookies["userName"].Value
@@ -110,66 +110,72 @@
         <!-- /.container -->
     </nav>
 
+
+    <div class="brand">VertaMeet</div>
+    <div class="address-bar">Where Vertafore Employees Come Together <br/> To Unleash their potential</div>
+
+    
     <!-- Content -->
-    <div class="container body-content" style="background-color:#DDDDDD">
-        @RenderBody()
+    <div class="contentContainer">
+        <div class="container body-content">
+            @RenderBody()
 
-        <!-- Modal -->
-        <div id="login-modal" class="modal">
-            <div class="modal-dialog">
-                <!-- Modal Content -->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dissmiss="modal">&times;</button>
-                        <h4 class="modal-title">Login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <a href="#" class="close"></a>
-                        <form method="post" class="signin" id="initial-login-form" onsubmit="return false;">
-                            <fieldset class="textbox">
-                                <label class="username">
-                                    <span>Name</span>
-                                    <input name="Name" type="text" required />
-                                </label>
-                                <label class="password">
-                                    <span>Email</span>
-                                    <input name="Email" type="text" required />
-                                </label>
-                                <label class="password">
-                                    <span>Location: </span>
-                                    <select name="Location" required>
-                                        <option disabled selected value=""> -- Select a Location -- </option>
-                                        <option value="Atlanta">Atlanta</option>
-                                        <option value="Bothell">Bothell</option>
-                                        <option value="Boulder">Boulder</option>
-                                        <option value="Deerfield">Deerfield</option>
-                                        <option value="EastLansing">EastLansing</option>
-                                        <option value="Indianapolis">Indianapolis</option>
-                                        <option value="Pulaski">Pulaski</option>
-                                        <option value="Windsor">Windsor</option>
-                                        <option value="WoodlandHills">WoodlandHills</option>
-                                    </select>
-                                </label>
-                                <button class="submit button" type="submit">Sign in</button>
-                            </fieldset>
-                        </form>
+            <!-- Modal -->
+            <div id="login-modal" class="modal">
+                <div class="modal-dialog">
+                    <!-- Modal Content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <a href="#" class="close"></a>
+                            <form method="post" class="signin" id="initial-login-form" onsubmit="return false;">
+                                <fieldset class="textbox">
+                                    <label class="username">
+                                        <span>Name</span>
+                                        <input name="Name" type="text" required />
+                                    </label>
+                                    <label class="password">
+                                        <span>Email</span>
+                                        <input name="Email" type="text" required />
+                                    </label>
+                                    <label class="password">
+                                        <span>Location: </span>
+                                        <select name="Location" required>
+                                            <option disabled selected value=""> -- Select a Location -- </option>
+                                            <option value="Atlanta">Atlanta</option>
+                                            <option value="Bothell">Bothell</option>
+                                            <option value="Boulder">Boulder</option>
+                                            <option value="Deerfield">Deerfield</option>
+                                            <option value="EastLansing">EastLansing</option>
+                                            <option value="Indianapolis">Indianapolis</option>
+                                            <option value="Pulaski">Pulaski</option>
+                                            <option value="Windsor">Windsor</option>
+                                            <option value="WoodlandHills">WoodlandHills</option>
+                                        </select>
+                                    </label>
+                                    <button class="submit button" type="submit">Sign in</button>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
+
             </div>
-            
         </div>
+    </div>
 
-        <hr />
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; VertaMeet 2015</p>
-                    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; VertaMeet 2015</p>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

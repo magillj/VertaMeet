@@ -162,8 +162,7 @@ footer p {
 
     .navbar-default {
         background: #ff6a00;
-        border : 30px solid #ff6a00; 
-        background: #ff6a00 url('https://c1.staticflickr.com/1/460/19249552213_e99c258e7c_m.jpg'); 
+        border : 30px solid #ff6a00;
         background-position: left; 
         background-repeat: no-repeat;
     }
