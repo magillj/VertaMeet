@@ -3,6 +3,49 @@
     ViewBag.Title = Model.InterestGroup.Name + " Group";
 }
 
+<style>
+    .signin input {
+        width: 100%;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="add-modal" role="form">
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Event</h4>
+            </div>
+            <div class="modal-body">
+                <a href="#" class="close"></a>
+                <form method="post" class="signin" id="create_event" onsubmit="return false;">
+                    <fieldset class="textbox">
+                        <label class="username">
+                            <span>Name: </span>
+                            <input name="Name" type="text" required />
+                        </label>
+                        <label class="password">
+                            <span>Description:</span>
+                            <input name="Description" type="text" required />
+                        </label>
+                        <label class="password">
+                            <span>Image Url:</span>
+                            <input name="ImageUrl" type="text" required />
+                        </label>
+                        <label class="password" style="display:none;">
+                            <select name="InterestGroupId">
+                                <option value="@Model.InterestGroup.Id">@Model.InterestGroup.Name</option>
+                            </select>
+                        </label>
+                        <button class="submit button" type="submit">Create Event</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="box">
         <div class="col-lg-12">
@@ -50,12 +93,12 @@
                 <table>
                     <tr>
                         <div class="live-tile" id="tile1" data-mode="flip">
-                            <div>
+                            <div data-toggle="modal" data-target="#add-modal">
                                 <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068116-3d-transparent-glass-icon-alphanumeric-plus-sign-simple.png" height="150" width="150">
                                 <a class="full" href="#">Add</a>
                                 <span class="tile-title">Add</span>
                             </div>
-                            <div>
+                            <div data-toggle="modal" data-target="#add-modal">
                                 <a href="#"><img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068116-3d-transparent-glass-icon-alphanumeric-plus-sign-simple.png" height="150" width="150"></a>
                                 <span class="tile-title">Add</span>
                             </div>
