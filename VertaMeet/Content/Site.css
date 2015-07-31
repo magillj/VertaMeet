@@ -163,28 +163,6 @@ table.adminTable td {
    padding-right: 10px;
 }
 
-#add-modal label {
-   display: block;
-   padding: 15px 10px;
-}
-
-#add-modal .modal-content {
-    position: fixed;
-    top: 100%;
-    left: -140%;
-    display: block;
-}
-
-#add-modal button.submit {
-   width: 285px;
-   margin: 0 10px;
-   padding: 5px;
-}
-
-#add-modal label span {
-   padding-right: 10px;
-}
-
 /* Button Positioning CSS (Event and Group) */
 #ProfilePage {
     /* Move it off the top of the page, then centre it horizontally */

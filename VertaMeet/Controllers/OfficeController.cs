@@ -17,13 +17,12 @@ namespace VertaMeet.Controllers
             {
                 return new HttpStatusCodeResult(400, "Location is invalid");
             }
-            OfficeViewModel model = new OfficeViewModel()
+
+            return View(new OfficeViewModel()
             {
                 InterestGroups = DatabaseInteractor.GetAllInterestGroups(),
                 Location = location
-            };
-
-            return View(model);
+            });
         }
     }
 }
