@@ -18,6 +18,12 @@
             <hr>
             <img class="img-responsive img-border img-center" src="@Model.Event.ImageUrl" alt="">
             <hr class="visible-xs">
+            <div style="position: relative; padding-top: 25px; text-align: center;">
+                <label>When: @Model.Event.Time</label>
+                <hr />
+                <label>Where: @Model.Event.Location</label>
+            </div>
+            <hr />
             <div id="ProfileButtons" role="group" aria-label="...">
                 <button type="button" class="btn btn-default" id="AboutB" onclick="about()">About</button>
                 <button type="button" class="btn btn-default" id="MembersB" onclick="members()">Attendees</button>
