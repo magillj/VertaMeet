@@ -3,6 +3,57 @@
     ViewBag.Title = Model.InterestGroup.Name + " Group";
 }
 
+<style>
+    .signin input {
+        width: 100%;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="add-modal" role="form">
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Event</h4>
+            </div>
+            <div class="modal-body">
+                <a href="#" class="close"></a>
+                <form method="post" class="signin" id="create_event" onsubmit="return false;">
+                    <fieldset class="textbox">
+                        <label class="username">
+                            <span>Name:</span>
+                            <input name="Name" type="text" required />
+                        </label>
+                        <label class="password">
+                            <span>Description:</span>
+                            <input name="Description" type="text" required />
+                        </label>
+                        <label class="password">
+                            <span>Time (mm/dd/yyyy hh:mm AM/PM):</span>
+                            <input name="Time" type="text" placeholder="mm/dd/yyyy hh:mm AM/PM" required />
+                        </label>
+                        <label class="password">
+                            <span>Image Url:</span>
+                            <input name="ImageUrl" type="text" required />
+                        </label>
+                        <label class="password">
+                            <span>Location:</span>
+                            <input name="Location" type="text" required />
+                        </label>
+                        <label class="password" style="display:none;">
+                            <select name="InterestGroupId">
+                                <option value="@Model.InterestGroup.Id">@Model.InterestGroup.Name</option>
+                            </select>
+                        </label>
+                        <button class="submit button" type="submit">Create Event</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="box">
         <div class="col-lg-12">
@@ -49,35 +100,53 @@
             <div class="tiles white" id="UpcomingEvents">
                 <table>
                     <tr>
-                        <div class="live-tile" id="tile1" data-mode="flip">
-                            <div>
-                                <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068116-3d-transparent-glass-icon-alphanumeric-plus-sign-simple.png" height="150" width="150">
-                                <a class="full" href="#">Add</a>
-                                <span class="tile-title">Add</span>
-                            </div>
-                            <div>
-                                <a href="#"><img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068116-3d-transparent-glass-icon-alphanumeric-plus-sign-simple.png" height="150" width="150"></a>
-                                <span class="tile-title">Add</span>
-                            </div>
-                        </div>
-                        @foreach (var evnt in Model.Events)
-                        {
-                            <td>
-                                <div class="live-tile" id="tile1" data-mode="flip">
-                                    <div>
-                                        <img src="@evnt.ImageUrl" height="150" width="150">
-                                        <a class="full" href="~/eventview?eventID=@evnt.Id">@evnt.Name</a>
-                                        <span class="tile-title">@evnt.Name</span>
-                                    </div>
-                                    <div>
-                                        <a href="~/eventview?eventID=@evnt.Id"><img src="@evnt.ImageUrl" height="150" width="150"></a>
-                                        <span class="tile-title">@evnt.Name</span>
-                                    </div>
+                        <td>
+                            <div class="live-tile" id="tile1" data-mode="flip">
+                                <div data-toggle="modal" data-target="#add-modal">
+                                    <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068116-3d-transparent-glass-icon-alphanumeric-plus-sign-simple.png" height="150" width="150">
+                                    <a class="full" href="#">Add</a>
+                                    <span class="tile-title">Add</span>
                                 </div>
-                            </td>
+                                <div data-toggle="modal" data-target="#add-modal">
+                                    <a href="#"><img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068116-3d-transparent-glass-icon-alphanumeric-plus-sign-simple.png" height="150" width="150"></a>
+                                    <span class="tile-title">Add</span>
+                                </div>
+                            </div>
+                        </td>
+                        @{var i = 1; var j = 0;}
+                        @foreach (var events in Model.Events)
+                        {
+                            if (i == 4)
+                            {
+                                j += 1;
+                                i = 0;
+                            <tr>
+                                <td></td>
+                            </tr>
+                            }
+                            else
+                            {
+                                i += 1;
+                                j += 1;
+                                <td>
+                                    <div class="live-tile" id="tile1" data-mode="flip">
+                                        <div>
+                                            <img src="@events.ImageUrl" height="150" width="150">
+                                            <a class="full" href="~/Group/Index/@events.Id">@events.Name</a>
+                                            <span class="tile-title">@events.Name</span>
+                                        </div>
+                                        <div>
+                                            <a href="~/Group/Index/@events.Id"><img src="@events.ImageUrl" height="150" width="150"></a>
+                                            <span class="tile-title">@events.Name</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            }
+
                         }
-                    </tr>
-                </table>
+                        </tr>
+                    </table>
+
             </div>
         </div>
     </div>

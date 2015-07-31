@@ -1,4 +1,20 @@
 ﻿
+.live-tile .tile-title{
+    -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+     position: absolute;
+     bottom: 0px;
+     font-size: 12px;
+      left: 0px;
+     text-decoration: none;
+    width: 100%;
+    z-index: 30;
+    position: fixed;
+    text-align: center;
+    color: #ff5200;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -160,6 +176,28 @@ table.adminTable td {
 }
 
 #login-modal label span {
+   padding-right: 10px;
+}
+
+#add-modal label {
+   display: block;
+   padding: 15px 10px;
+}
+
+#add-modal .modal-content {
+    left: calc(50% - 158px);
+    top: calc(50% - 180px);
+    top: 50px;
+    left: -900px;
+}
+
+#add-modal button.submit {
+   width: 285px;
+   margin: 0 10px;
+   padding: 5px;
+}
+
+#add-modal label span {
    padding-right: 10px;
 }
 
