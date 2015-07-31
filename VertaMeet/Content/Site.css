@@ -13,6 +13,7 @@
     position: fixed;
     text-align: center;
     color: #ff5200;
+    font-weight: bolder;
 }
 
 /* Set padding to keep content from hitting the edges */

@@ -114,7 +114,7 @@
                             </div>
                         </td>
                         @{var i = 1; var j = 0;}
-                        @foreach (var events in Model.Events)
+                        @foreach (var evnt in Model.Events)
                         {
                             if (i == 4)
                             {
@@ -131,13 +131,13 @@
                                 <td>
                                     <div class="live-tile" id="tile1" data-mode="flip">
                                         <div>
-                                            <img src="@events.ImageUrl" height="150" width="150">
-                                            <a class="full" href="~/Group/Index/@events.Id">@events.Name</a>
-                                            <span class="tile-title">@events.Name</span>
+                                            <img src="@evnt.ImageUrl" height="150" width="150">
+                                            <a class="full" href="~/eventview?eventID=@evnt.Id">@evnt.Name</a>
+                                            <span class="tile-title">@evnt.Name</span>
                                         </div>
                                         <div>
-                                            <a href="~/Group/Index/@events.Id"><img src="@events.ImageUrl" height="150" width="150"></a>
-                                            <span class="tile-title">@events.Name</span>
+                                            <a href="~/eventview?eventID=@evnt.Id"><img src="@evnt.ImageUrl" height="150" width="150"></a>
+                                            <span class="tile-title">@evnt.Name</span>
                                         </div>
                                     </div>
                                 </td>
